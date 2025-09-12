@@ -1,0 +1,21 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  config:
+
+services:
+  heimdall:
+    image: "linuxserver/heimdall:{{ heimdall_version }}"
+    volumes:
+      - config:/config
+    deploy:
+      labels:
+        caddy: echocharlie.xyz, www.echocharlie.xyz
+        caddy.reverse_proxy: heimdall:80
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_hostname }}

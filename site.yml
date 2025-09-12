@@ -12,3 +12,4 @@
     - vault/caddy.yml
   roles:
     - caddy
+    - heimdall
