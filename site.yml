@@ -4,3 +4,11 @@
   roles:
     - swarm
     - tmux
+
+- name: Configure Raspberry Pi 4
+  hosts: raspberry-pi-4
+  become: true
+  vars_files:
+    - vault/caddy.yml
+  roles:
+    - caddy

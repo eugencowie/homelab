@@ -1,0 +1,27 @@
+networks:
+  default:
+    name: caddy
+    driver: overlay
+    attachable: true
+
+volumes:
+  data:
+
+services:
+  caddy:
+    image: "caddy:{{ caddy_version }}-custom"
+    volumes:
+      - data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "80:80"
+      - "443:443"
+    labels:
+      caddy.email: "{{ caddy_email }}"
+      caddy_0: (dns)
+      caddy_0.tls.resolvers: "1.1.1.1"
+      caddy_0.tls.dns: "cloudflare {{ caddy_cloudflare_token }}"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_hostname }}

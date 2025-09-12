@@ -1,0 +1,29 @@
+- name: Check for existing image
+  community.docker.docker_image_info:
+    name: "caddy:{{ caddy_version }}-custom"
+  register: caddy_image
+
+- name: Create build directory
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: caddy-build
+  register: caddy_build_dir
+  when: not caddy_image.images
+
+- name: Copy Dockerfile
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/Dockerfile"
+    dest: "{{ caddy_build_dir.path }}/Dockerfile"
+    mode: "0644"
+  when: not caddy_image.images
+
+- name: Build image
+  community.docker.docker_image:
+    name: caddy
+    tag: "{{ caddy_version }}-custom"
+    source: build
+    build:
+      path: "{{ caddy_build_dir.path }}"
+      args:
+        VERSION: "{{ caddy_version }}"
+  when: not caddy_image.images

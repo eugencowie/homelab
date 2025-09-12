@@ -1,0 +1,8 @@
+- name: Build image
+  ansible.builtin.include_tasks:
+    file: build.yml
+
+- name: Deploy stack
+  community.docker.docker_stack:
+    name: caddy
+    compose: ["{{ lookup('template', 'stack.yml') | from_yaml }}"]
