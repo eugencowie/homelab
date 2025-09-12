@@ -1,0 +1,26 @@
+- name: Install dependencies
+  ansible.builtin.apt:
+    name:
+      - python3-docker   # required by docker_swarm module
+      - python3-jsondiff # required by docker_stack module
+      - python3-yaml     # required by docker_stack module
+
+- name: Initialise swarm
+  community.docker.docker_swarm:
+    state: present
+  when: inventory_hostname == swarm_leader
+  register: swarm_info
+
+- name: Set facts
+  ansible.builtin.set_fact:
+    swarm_join_tokens:
+      manager: "{{ swarm_info.swarm_facts.JoinTokens.Manager }}"
+      worker: "{{ swarm_info.swarm_facts.JoinTokens.Worker }}"
+  when: swarm_info.swarm_facts is defined
+
+- name: Join swarm
+  community.docker.docker_swarm:
+    state: join
+    join_token: "{{ hostvars[swarm_leader].swarm_join_tokens[swarm_role] }}"
+    remote_addrs: "{{ hostvars[swarm_leader].ansible_host }}"
+  when: inventory_hostname != swarm_leader

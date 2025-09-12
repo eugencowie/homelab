@@ -1,0 +1,10 @@
+swarm_leader: >-
+  {{
+    ansible_play_hosts
+      | map('extract', hostvars)
+      | selectattr('swarm_role', 'equalto', 'manager')
+      | map(attribute='inventory_hostname')
+      | first
+  }}
+
+swarm_role: worker
