@@ -1,0 +1,18 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+services:
+  wud:
+    image: getwud/wud:{{ wud_version }}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      labels:
+        caddy: updates.echocharlie.xyz
+        caddy.reverse_proxy: wud:3000
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_hostname }}
