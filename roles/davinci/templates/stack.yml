@@ -1,0 +1,23 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  data:
+
+services:
+  davinci:
+    image: postgres:{{ davinci_version }}
+    environment:
+      - POSTGRES_DB=database
+      - POSTGRES_USER={{ davinci_user.username }}
+      - POSTGRES_PASSWORD={{ davinci_user.password }}
+    volumes:
+      - data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_hostname }}
