@@ -15,6 +15,7 @@
     - vault/karakeep.yml
     - vault/samba.yml
     - vault/stash.yml
+    - vault/tailscale.yml
   roles:
     - caddy
     - adguard
@@ -27,3 +28,4 @@
     - samba
     - sillytavern
     - stash
+    - tailscale
