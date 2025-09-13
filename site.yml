@@ -12,6 +12,7 @@
     - vault/caddy.yml
     - vault/bitwarden.yml
     - vault/samba.yml
+    - vault/stash.yml
   roles:
     - caddy
     - adguard
@@ -19,3 +20,4 @@
     - heimdall
     - nextcloud
     - samba
+    - stash
