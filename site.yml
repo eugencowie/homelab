@@ -13,6 +13,7 @@
     - vault/bitwarden.yml
   roles:
     - caddy
+    - adguard
     - bitwarden
     - heimdall
     - nextcloud
