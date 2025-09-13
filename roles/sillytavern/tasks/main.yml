@@ -1,0 +1,9 @@
+- name: Create config
+  community.docker.docker_config:
+    name: sillytavern_config
+    data: "{{ lookup('file', role_path + '/files/config.yml') }}"
+
+- name: Deploy stack
+  community.docker.docker_stack:
+    name: sillytavern
+    compose: ["{{ lookup('template', 'stack.yml') | from_yaml }}"]
