@@ -1,0 +1,25 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  config:
+  data:
+
+services:
+  nextcloud:
+    image: "linuxserver/nextcloud:{{ nextcloud_version }}"
+    volumes:
+      - config:/config
+      - data:/data
+    deploy:
+      labels:
+        caddy: cloud.echocharlie.xyz
+        caddy.reverse_proxy: nextcloud:443
+        caddy.reverse_proxy.transport: http
+        caddy.reverse_proxy.transport.tls_insecure_skip_verify:
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_hostname }}
