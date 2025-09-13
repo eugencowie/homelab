@@ -11,9 +11,11 @@
   vars_files:
     - vault/caddy.yml
     - vault/bitwarden.yml
+    - vault/samba.yml
   roles:
     - caddy
     - adguard
     - bitwarden
     - heimdall
     - nextcloud
+    - samba
