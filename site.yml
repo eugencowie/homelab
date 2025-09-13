@@ -10,6 +10,8 @@
   become: true
   vars_files:
     - vault/caddy.yml
+    - vault/bitwarden.yml
   roles:
     - caddy
+    - bitwarden
     - heimdall
