@@ -11,7 +11,7 @@
   vars_files:
     - vault/caddy.yml
     - vault/bitwarden.yml
-    - vault/davinci.yml
+    # vault/davinci.yml
     - vault/karakeep.yml
     - vault/samba.yml
     - vault/stash.yml
@@ -20,7 +20,7 @@
     - caddy
     - adguard
     - bitwarden
-    - davinci
+    # davinci
     - heimdall
     - karakeep
     - n8n
@@ -29,4 +29,4 @@
     - sillytavern
     - stash
     - tailscale
-    - wud
+    # wud
