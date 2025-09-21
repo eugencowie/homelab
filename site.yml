@@ -18,6 +18,7 @@
     - vault/tailscale.yml
   roles:
     - caddy
+    - actual
     - adguard
     - bitwarden
     - davinci
