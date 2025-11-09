@@ -9,5 +9,6 @@ steps:
       RENOVATE_PLATFORM: forgejo
       RENOVATE_ENDPOINT: https://codeberg.org/api/v1/
       RENOVATE_TOKEN: { from_secret: RENOVATE_TOKEN }
+      RENOVATE_GITHUB_COM_TOKEN: { from_secret: RENOVATE_GITHUB_COM_TOKEN }
       RENOVATE_AUTODISCOVER: 'true'
     commands: [renovate]
