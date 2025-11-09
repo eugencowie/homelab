@@ -25,9 +25,9 @@
     - { role: davinci, davinci_version: 13.22 } # renovate: docker=postgres
     - { role: heimdall, heimdall_version: 2.7.6 } # renovate: docker=linuxserver/heimdall
     - role: karakeep
-      karakeep_version: 0.27.1 # renovate: docker=ghcr.io/karakeep-app/karakeep
+      karakeep_version: 0.28.0 # renovate: docker=ghcr.io/karakeep-app/karakeep
       karakeep_chrome_version: 124 # renovate: docker=gcr.io/zenika-hub/alpine-chrome
-      karakeep_meili_version: 1.13.3 # renovate: docker=getmeili/meilisearch
+      karakeep_meili_version: 1.24.0 # renovate: docker=getmeili/meilisearch
     - { role: n8n, n8n_version: 1.119.0 } # renovate: docker=n8nio/n8n
     - { role: nextcloud, nextcloud_version: 32.0.1 } # renovate: docker=linuxserver/nextcloud
     - role: paperless
