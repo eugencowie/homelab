@@ -1,0 +1,6 @@
+woodpecker_version: 3.11.0
+
+woodpecker_forgejo_url:
+woodpecker_forgejo_client:
+woodpecker_forgejo_secret:
+woodpecker_agent_secret:

@@ -16,6 +16,7 @@
     - vault/samba.yml
     - vault/stash.yml
     - vault/tailscale.yml
+    - vault/woodpecker.yml
   roles:
     - caddy
     - { role: actual, actual_version: 25.11.0 }
@@ -31,3 +32,4 @@
     - { role: sillytavern, sillytavern_version: 1.13.5 }
     - stash
     - tailscale
+    - woodpecker

@@ -1,0 +1,45 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  data:
+  config:
+
+services:
+  woodpecker:
+    image: "woodpeckerci/woodpecker-server:v{{ woodpecker_version }}"
+    environment:
+      - WOODPECKER_OPEN=true
+      - WOODPECKER_HOST=https://ci.echocharlie.xyz
+      - WOODPECKER_FORGEJO=true
+      - WOODPECKER_FORGEJO_URL={{ woodpecker_forgejo_url }}
+      - WOODPECKER_FORGEJO_CLIENT={{ woodpecker_forgejo_client }}
+      - WOODPECKER_FORGEJO_SECRET={{ woodpecker_forgejo_secret }}
+      - WOODPECKER_AGENT_SECRET={{ woodpecker_agent_secret }}
+    volumes:
+      - data:/var/lib/woodpecker
+    deploy:
+      labels:
+        caddy: ci.echocharlie.xyz
+        caddy.reverse_proxy: woodpecker:8000
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_hostname }}
+
+  agent:
+    image: "woodpeckerci/woodpecker-agent:v{{ woodpecker_version }}"
+    command: agent
+    depends_on: [woodpecker]
+    environment:
+      - WOODPECKER_SERVER=woodpecker:9000
+      - WOODPECKER_AGENT_SECRET={{ woodpecker_agent_secret }}
+    volumes:
+      - config:/etc/woodpecker
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_hostname }}
