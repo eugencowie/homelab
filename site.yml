@@ -24,19 +24,19 @@
     - { role: bitwarden, bitwarden_version: 1.34.3 } # renovate: docker=vaultwarden/server
     - { role: davinci, davinci_version: 13.22 } # renovate: docker=postgres
     - { role: heimdall, heimdall_version: 2.7.6 } # renovate: docker=linuxserver/heimdall
-    - role: karakeep
-      karakeep_version: 0.28.0 # renovate: docker=ghcr.io/karakeep-app/karakeep
-      karakeep_chrome_version: 124 # renovate: docker=gcr.io/zenika-hub/alpine-chrome
-      karakeep_meili_version: 1.13.3 # renovate: docker=getmeili/meilisearch
     - { role: n8n, n8n_version: 1.119.0 } # renovate: docker=n8nio/n8n
     - { role: nextcloud, nextcloud_version: 32.0.1 } # renovate: docker=linuxserver/nextcloud
-    - role: paperless
-      paperless_version: 2.19.5 # renovate: docker=ghcr.io/paperless-ngx/paperless-ngx
-      paperless_redis_version: 8.2.3 # renovate: docker=redis
-      paperless_tika_version: 3.2.3.0 # renovate: docker=apache/tika
-      paperless_gotenberg_version: 8.24.0 # renovate: docker=gotenberg/gotenberg
     - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
     - { role: sillytavern, sillytavern_version: 1.13.5 } # renovate: docker=ghcr.io/sillytavern/sillytavern
     - { role: stash, stash_version: 1.71.2 } # renovate: docker=rclone/rclone
     - { role: tailscale, tailscale_version: 1.90.6 } # renovate: docker=tailscale/tailscale
     - { role: woodpecker, woodpecker_version: 3.11.0 } # renovate: docker=woodpeckerci/woodpecker-server
+    - role: karakeep
+      karakeep_version: 0.28.0 # renovate: docker=ghcr.io/karakeep-app/karakeep
+      karakeep_chrome_version: 124 # renovate: docker=gcr.io/zenika-hub/alpine-chrome
+      karakeep_meili_version: 1.13.3 # renovate: docker=getmeili/meilisearch
+    - role: paperless
+      paperless_version: 2.19.5 # renovate: docker=ghcr.io/paperless-ngx/paperless-ngx
+      paperless_redis_version: 8.2.3 # renovate: docker=redis
+      paperless_tika_version: 3.2.3.0 # renovate: docker=apache/tika
+      paperless_gotenberg_version: 8.24.0 # renovate: docker=gotenberg/gotenberg
