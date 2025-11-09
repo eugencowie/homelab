@@ -28,6 +28,6 @@
     - nextcloud
     - paperless
     - samba
-    - sillytavern
+    - { role: sillytavern, sillytavern_version: 1.13.5 }
     - stash
     - tailscale
