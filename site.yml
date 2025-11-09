@@ -23,7 +23,7 @@
     - { role: adguard, adguard_version: 0.107.69 } # renovate: docker=adguard/adguardhome
     - { role: bitwarden, bitwarden_version: 1.34.3 } # renovate: docker=vaultwarden/server
     - { role: davinci, davinci_version: 13.22 } # renovate: docker=postgres
-    - { role: heimdall, heimdall_version: 2.7.5 } # renovate: docker=linuxserver/heimdall
+    - { role: heimdall, heimdall_version: 2.7.6 } # renovate: docker=linuxserver/heimdall
     - role: karakeep
       karakeep_version: 0.27.1 # renovate: docker=ghcr.io/karakeep-app/karakeep
       karakeep_chrome_version: 124 # renovate: docker=gcr.io/zenika-hub/alpine-chrome
