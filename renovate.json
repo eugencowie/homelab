@@ -7,5 +7,24 @@
       "managerFilePatterns": ["*.yml"],
       "matchStrings": ["_version: (?<currentValue>\\S+).*# renovate: (?<datasource>\\S+)=(?<depName>\\S+)"]
     }
+  ],
+  "packageRules": [
+    {
+      "groupName": "Karakeep",
+      "matchPackageNames": [
+        "ghcr.io/karakeep-app/karakeep",
+        "gcr.io/zenika-hub/alpine-chrome",
+        "getmeili/meilisearch"
+      ]
+    },
+    {
+      "groupName": "Paperless",
+      "matchPackageNames": [
+        "ghcr.io/paperless-ngx/paperless-ngx",
+        "redis",
+        "apache/tika",
+        "gotenberg/gotenberg"
+      ]
+    }
   ]
 }
