@@ -29,7 +29,7 @@
       karakeep_chrome_version: 124 # renovate: docker=gcr.io/zenika-hub/alpine-chrome
       karakeep_meili_version: 1.13.3 # renovate: docker=getmeili/meilisearch
     - { role: n8n, n8n_version: 1.119.0 } # renovate: docker=n8nio/n8n
-    - { role: nextcloud, nextcloud_version: 31.0.9 } # renovate: docker=linuxserver/nextcloud
+    - { role: nextcloud, nextcloud_version: 32.0.1 } # renovate: docker=linuxserver/nextcloud
     - role: paperless
       paperless_version: 2.18.4 # renovate: docker=ghcr.io/paperless-ngx/paperless-ngx
       paperless_redis_version: 8.2.1 # renovate: docker=redis
