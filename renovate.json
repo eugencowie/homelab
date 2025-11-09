@@ -1,4 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "dependencyDashboard": true
+  "dependencyDashboard": true,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["*.yml"],
+      "matchStrings": ["_version: (?<currentValue>\\S+).*# renovate: (?<datasource>\\S+)=(?<depName>\\S+)"]
+    }
+  ]
 }
