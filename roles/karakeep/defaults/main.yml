@@ -1,6 +1,6 @@
-karakeep_version: 0.27.1
-karakeep_chrome_version: 124
-karakeep_meili_version: 1.13.3
+karakeep_version: latest
+karakeep_chrome_version: latest
+karakeep_meili_version: latest
 
 karakeep_meili_master_key:
 karakeep_nextauth_secret:

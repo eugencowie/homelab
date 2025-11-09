@@ -1,4 +1,4 @@
-paperless_version: 2.18.4
-paperless_redis_version: 8.2.1
-paperless_tika_version: 3.2.3.0
-paperless_gotenberg_version: 8.22.0
+paperless_version: latest
+paperless_redis_version: latest
+paperless_tika_version: latest
+paperless_gotenberg_version: latest
