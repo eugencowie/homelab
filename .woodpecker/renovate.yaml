@@ -1,0 +1,13 @@
+when:
+  - event: cron
+  - event: manual
+
+steps:
+  - name: renovate
+    image: ghcr.io/renovatebot/renovate:42.2.0
+    environment:
+      RENOVATE_PLATFORM: forgejo
+      RENOVATE_ENDPOINT: https://codeberg.org/api/v1/
+      RENOVATE_TOKEN: { from_secret: RENOVATE_TOKEN }
+      RENOVATE_AUTODISCOVER: 'true'
+    commands: [renovate]
