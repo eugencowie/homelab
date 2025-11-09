@@ -1,4 +1,4 @@
-woodpecker_version: 3.11.0
+woodpecker_version: latest
 
 woodpecker_forgejo_url:
 woodpecker_forgejo_client:
