@@ -37,6 +37,6 @@
       paperless_gotenberg_version: 8.22.0 # renovate: docker=gotenberg/gotenberg
     - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
     - { role: sillytavern, sillytavern_version: 1.13.5 } # renovate: docker=ghcr.io/sillytavern/sillytavern
-    - { role: stash, stash_version: 1.71.0 } # renovate: docker=rclone/rclone
+    - { role: stash, stash_version: 1.71.2 } # renovate: docker=rclone/rclone
     - { role: tailscale, tailscale_version: 1.88.2 } # renovate: docker=tailscale/tailscale
     - { role: woodpecker, woodpecker_version: 3.11.0 } # renovate: docker=woodpeckerci/woodpecker-server
