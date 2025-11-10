@@ -23,6 +23,7 @@
     - { role: adguard, adguard_version: 0.107.69 } # renovate: docker=adguard/adguardhome
     - { role: bitwarden, bitwarden_version: 1.34.3 } # renovate: docker=vaultwarden/server
     - { role: davinci, davinci_version: 13.22 } # renovate: docker=postgres
+    - { role: glance, glance_version: 0.8.4 } # renovate: docker=glanceapp/glance
     - { role: heimdall, heimdall_version: 2.7.6 } # renovate: docker=linuxserver/heimdall
     - { role: n8n, n8n_version: 1.119.0 } # renovate: docker=n8nio/n8n
     - { role: nextcloud, nextcloud_version: 32.0.1 } # renovate: docker=linuxserver/nextcloud
