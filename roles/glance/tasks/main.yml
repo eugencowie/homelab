@@ -1,0 +1,9 @@
+- name: Create config
+  community.docker.docker_config:
+    name: glance_config
+    data: "{{ lookup('file', role_path + '/files/config.yml') }}"
+
+- name: Deploy stack
+  community.docker.docker_stack:
+    name: glance
+    compose: ["{{ lookup('template', 'stack.yml') | from_yaml }}"]

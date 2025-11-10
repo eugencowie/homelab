@@ -1,0 +1,26 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+configs:
+  config:
+    name: glance_config
+    external: true
+
+services:
+  glance:
+    image: "glanceapp/glance:v{{ glance_version }}"
+    configs:
+      - source: config
+        target: /app/config/glance.yml
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    deploy:
+      labels:
+        caddy: dash.echocharlie.xyz
+        caddy.reverse_proxy: glance:8080
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_hostname }}
