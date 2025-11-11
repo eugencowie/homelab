@@ -25,7 +25,7 @@
     - { role: davinci, davinci_version: 13.22 } # renovate: docker=postgres
     - { role: glance, glance_version: 0.8.4 } # renovate: docker=glanceapp/glance
     - { role: heimdall, heimdall_version: 2.7.6 } # renovate: docker=linuxserver/heimdall
-    - { role: n8n, n8n_version: 1.119.0 } # renovate: docker=n8nio/n8n
+    - { role: n8n, n8n_version: 1.120.1 } # renovate: docker=n8nio/n8n
     - { role: nextcloud, nextcloud_version: 32.0.1 } # renovate: docker=linuxserver/nextcloud
     - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
     - { role: sillytavern, sillytavern_version: 1.13.5 } # renovate: docker=ghcr.io/sillytavern/sillytavern
