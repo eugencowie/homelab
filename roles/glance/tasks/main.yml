@@ -1,7 +1,9 @@
 - name: Create config
   community.docker.docker_config:
-    name: glance_config
-    data: "{{ lookup('file', role_path + '/files/config.yml') }}"
+    name: "glance_{{ item | basename | splitext | first }}_{{ (lookup('file', item) | hash('sha256'))[:7] }}"
+    data: "{{ lookup('file', item) }}"
+  with_fileglob:
+    - "{{ role_path }}/files/*.yml"
 
 - name: Deploy stack
   community.docker.docker_stack:
