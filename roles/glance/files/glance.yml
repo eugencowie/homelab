@@ -1,0 +1,5 @@
+pages:
+  - $include: startpage.yml
+  - $include: home.yml
+  - $include: markets.yml
+  - $include: gaming.yml

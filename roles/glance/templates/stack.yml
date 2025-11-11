@@ -4,16 +4,20 @@ networks:
     external: true
 
 configs:
-  config:
-    name: glance_config
+{% for item in lookup('fileglob', role_path + '/files/*.yml', wantlist=True) %}
+  {{ item | basename | splitext | first }}:
+    name: "glance_{{ item | basename | splitext | first }}_{{ (lookup('file', item) | hash('sha256'))[:7] }}"
     external: true
+{% endfor %}
 
 services:
   glance:
     image: "glanceapp/glance:v{{ glance_version }}"
     configs:
-      - source: config
-        target: /app/config/glance.yml
+{% for item in lookup('fileglob', role_path + '/files/*.yml', wantlist=True) %}
+      - source: "{{ item | basename | splitext | first }}"
+        target: "/app/config/{{ item | basename }}"
+{% endfor %}
     volumes:
       - /etc/localtime:/etc/localtime:ro
     deploy:
