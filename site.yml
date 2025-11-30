@@ -30,7 +30,7 @@
     - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
     - { role: sillytavern, sillytavern_version: 1.14.0 } # renovate: docker=ghcr.io/sillytavern/sillytavern
     - { role: stash, stash_version: 1.71.2 } # renovate: docker=rclone/rclone
-    - { role: tailscale, tailscale_version: 1.90.6 } # renovate: docker=tailscale/tailscale
+    - { role: tailscale, tailscale_version: 1.90.9 } # renovate: docker=tailscale/tailscale
     - { role: woodpecker, woodpecker_version: 3.12.0 } # renovate: docker=woodpeckerci/woodpecker-server
     - role: karakeep
       karakeep_version: 0.29.0 # renovate: docker=ghcr.io/karakeep-app/karakeep
