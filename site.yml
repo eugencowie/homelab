@@ -28,7 +28,7 @@
     - { role: n8n, n8n_version: 1.120.1 } # renovate: docker=n8nio/n8n
     - { role: nextcloud, nextcloud_version: 32.0.1 } # renovate: docker=linuxserver/nextcloud
     - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
-    - { role: sillytavern, sillytavern_version: 1.13.5 } # renovate: docker=ghcr.io/sillytavern/sillytavern
+    - { role: sillytavern, sillytavern_version: 1.14.0 } # renovate: docker=ghcr.io/sillytavern/sillytavern
     - { role: stash, stash_version: 1.71.2 } # renovate: docker=rclone/rclone
     - { role: tailscale, tailscale_version: 1.90.6 } # renovate: docker=tailscale/tailscale
     - { role: woodpecker, woodpecker_version: 3.11.0 } # renovate: docker=woodpeckerci/woodpecker-server
