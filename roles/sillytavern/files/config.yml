@@ -33,18 +33,18 @@ deepl:
 enableServerPlugins: false
 thumbnails:
   enabled: true
-  quality: 95
-  format: jpg
+  format: png
+  quality: 100
   dimensions:
     bg:
-      - 160
-      - 90
+      - 240
+      - 135
     avatar:
-      - 96
-      - 144
+      - 864
+      - 1280
     persona:
-      - 96
-      - 144
+      - 864
+      - 1280
 backups:
   chat:
     enabled: true
