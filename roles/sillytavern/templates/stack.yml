@@ -5,7 +5,7 @@ networks:
 
 configs:
   config:
-    name: sillytavern_config
+    name: "sillytavern_config_{{ (lookup('file', role_path + '/files/config.yml') | hash('sha256'))[:7] }}"
     external: true
 
 volumes:

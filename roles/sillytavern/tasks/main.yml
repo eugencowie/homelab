@@ -1,6 +1,6 @@
 - name: Create config
   community.docker.docker_config:
-    name: sillytavern_config
+    name: "sillytavern_config_{{ (lookup('file', role_path + '/files/config.yml') | hash('sha256'))[:7] }}"
     data: "{{ lookup('file', role_path + '/files/config.yml') }}"
 
 - name: Deploy stack
