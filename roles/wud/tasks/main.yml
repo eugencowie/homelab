@@ -1,4 +1,0 @@
-- name: Deploy stack
-  community.docker.docker_stack:
-    name: wud
-    compose: ["{{ lookup('template', 'stack.yml') | from_yaml }}"]
