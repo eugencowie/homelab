@@ -37,7 +37,7 @@
       karakeep_chrome_version: 124 # renovate: docker=gcr.io/zenika-hub/alpine-chrome
       karakeep_meili_version: 1.13.3 # renovate: docker=getmeili/meilisearch
     - role: paperless
-      paperless_version: 2.20.0 # renovate: docker=ghcr.io/paperless-ngx/paperless-ngx
+      paperless_version: 2.20.1 # renovate: docker=ghcr.io/paperless-ngx/paperless-ngx
       paperless_redis_version: 8.4.0 # renovate: docker=redis
       paperless_tika_version: 3.2.3.0 # renovate: docker=apache/tika
-      paperless_gotenberg_version: 8.25.0 # renovate: docker=gotenberg/gotenberg
+      paperless_gotenberg_version: 8.25.1 # renovate: docker=gotenberg/gotenberg
