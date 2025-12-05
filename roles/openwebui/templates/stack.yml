@@ -1,0 +1,24 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  data:
+
+services:
+  openwebui:
+    image: "ghcr.io/open-webui/open-webui:{{ openwebui_version }}"
+    environment:
+      - RAG_EMBEDDING_ENGINE=ollama # https://docs.openwebui.com/tutorials/tips/reduce-ram-usage
+      - AUDIO_STT_ENGINE=openai     # https://docs.openwebui.com/tutorials/tips/reduce-ram-usage
+    volumes:
+      - data:/app/backend/data
+    deploy:
+      labels:
+        caddy: chat.echocharlie.xyz
+        caddy.reverse_proxy: openwebui:8080
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_hostname }}
