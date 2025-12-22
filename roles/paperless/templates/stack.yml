@@ -32,7 +32,7 @@ services:
         caddy.import: dns
       placement:
         constraints:
-          - node.hostname == {{ ansible_hostname }}
+          - node.hostname == {{ ansible_facts['hostname'] }}
 
   redis:
     image: redis:{{ paperless_redis_version }}
@@ -41,14 +41,14 @@ services:
     deploy:
       placement:
         constraints:
-          - node.hostname == {{ ansible_hostname }}
+          - node.hostname == {{ ansible_facts['hostname'] }}
 
   tika:
     image: apache/tika:{{ paperless_tika_version }}
     deploy:
       placement:
         constraints:
-          - node.hostname == {{ ansible_hostname }}
+          - node.hostname == {{ ansible_facts['hostname'] }}
 
   gotenberg:
     image: gotenberg/gotenberg:{{ paperless_gotenberg_version }}
@@ -56,4 +56,4 @@ services:
     deploy:
       placement:
         constraints:
-          - node.hostname == {{ ansible_hostname }}
+          - node.hostname == {{ ansible_facts['hostname'] }}

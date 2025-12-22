@@ -29,7 +29,7 @@ services:
         caddy.import: dns
       placement:
         constraints:
-          - node.hostname == {{ ansible_hostname }}
+          - node.hostname == {{ ansible_facts['hostname'] }}
 
   chrome:
     image: gcr.io/zenika-hub/alpine-chrome:{{ karakeep_chrome_version }}
@@ -43,7 +43,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.hostname == {{ ansible_hostname }}
+          - node.hostname == {{ ansible_facts['hostname'] }}
 
   meili:
     image: getmeili/meilisearch:v{{ karakeep_meili_version }}
@@ -55,4 +55,4 @@ services:
     deploy:
       placement:
         constraints:
-          - node.hostname == {{ ansible_hostname }}
+          - node.hostname == {{ ansible_facts['hostname'] }}
