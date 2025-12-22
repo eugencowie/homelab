@@ -27,7 +27,7 @@ services:
         caddy.import: dns
       placement:
         constraints:
-          - node.hostname == {{ ansible_hostname }}
+          - node.hostname == {{ ansible_facts['hostname'] }}
 
   agent:
     image: "woodpeckerci/woodpecker-agent:v{{ woodpecker_version }}"
@@ -42,4 +42,4 @@ services:
     deploy:
       placement:
         constraints:
-          - node.hostname == {{ ansible_hostname }}
+          - node.hostname == {{ ansible_facts['hostname'] }}

@@ -26,4 +26,4 @@ services:
         caddy.import: dns
       placement:
         constraints:
-          - node.hostname == {{ ansible_hostname }}
+          - node.hostname == {{ ansible_facts['hostname'] }}
