@@ -1,0 +1,9 @@
+- name: Prune Docker resources
+  community.docker.docker_prune:
+    containers: true
+    images: true
+    images_filters:
+      dangling: false
+    networks: true
+    volumes: true
+    build_cache: true

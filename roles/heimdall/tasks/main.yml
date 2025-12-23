@@ -2,3 +2,4 @@
   community.docker.docker_stack:
     name: heimdall
     compose: ["{{ lookup('template', 'stack.yml') | from_yaml }}"]
+  notify: Prune Docker images
