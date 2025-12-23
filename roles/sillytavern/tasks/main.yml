@@ -7,3 +7,4 @@
   community.docker.docker_stack:
     name: sillytavern
     compose: ["{{ lookup('template', 'stack.yml') | from_yaml }}"]
+  notify: Prune Docker images

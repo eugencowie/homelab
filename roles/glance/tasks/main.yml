@@ -9,3 +9,4 @@
   community.docker.docker_stack:
     name: glance
     compose: ["{{ lookup('template', 'stack.yml') | from_yaml }}"]
+  notify: Prune Docker images
