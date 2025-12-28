@@ -26,7 +26,7 @@
     - { role: glance, glance_version: 0.8.4 } # renovate: docker=glanceapp/glance
     - { role: heimdall, heimdall_version: 2.7.6 } # renovate: docker=linuxserver/heimdall
     - { role: jellyfin, jellyfin_version: 10.11.5 } # renovate: docker=jellyfin/jellyfin
-    - { role: n8n, n8n_version: 2.2.0 } # renovate: docker=n8nio/n8n
+    - { role: n8n, n8n_version: 2.2.1 } # renovate: docker=n8nio/n8n
     - { role: nextcloud, nextcloud_version: 32.0.3 } # renovate: docker=linuxserver/nextcloud
     - { role: openwebui, openwebui_version: 0.6.43 } # renovate: docker=ghcr.io/open-webui/open-webui
     - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
