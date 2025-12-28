@@ -1,4 +1,4 @@
-- name: Prune Docker resources
+- name: Prune Docker images
   community.docker.docker_prune:
     containers: true
     images: true
