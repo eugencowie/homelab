@@ -30,7 +30,7 @@
     - { role: nextcloud, nextcloud_version: 32.0.3 } # renovate: docker=linuxserver/nextcloud
     - { role: openwebui, openwebui_version: 0.6.43 } # renovate: docker=ghcr.io/open-webui/open-webui
     - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
-    - { role: sillytavern, sillytavern_version: 1.14.0 } # renovate: docker=ghcr.io/sillytavern/sillytavern
+    - { role: sillytavern, sillytavern_version: 1.15.0 } # renovate: docker=ghcr.io/sillytavern/sillytavern
     - { role: stash, stash_version: 1.72.0 } # renovate: docker=rclone/rclone
     - { role: tailscale, tailscale_version: 1.92.4 } # renovate: docker=tailscale/tailscale
     - { role: woodpecker, woodpecker_version: 3.12.0 } # renovate: docker=woodpeckerci/woodpecker-server
