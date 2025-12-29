@@ -6,4 +6,4 @@
       dangling: false
     networks: true
     volumes: true
-    build_cache: true
+    builder_cache: true
