@@ -22,7 +22,7 @@
     - vault/woodpecker.yml
   roles:
     - { role: caddy, caddy_version: 2.10.2 } # renovate: docker=caddy
-    - { role: actual, actual_version: 26.1.0 } # renovate: docker=actualbudget/actual-server
+    - { role: actual, actual_version: 26.2.1 } # renovate: docker=actualbudget/actual-server
     - { role: adguard, adguard_version: 0.107.71 } # renovate: docker=adguard/adguardhome
     - { role: bitwarden, bitwarden_version: 1.35.2 } # renovate: docker=vaultwarden/server
     - { role: davinci, davinci_version: 13.23 } # renovate: docker=postgres
