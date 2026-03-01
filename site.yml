@@ -36,7 +36,7 @@
     - { role: sillytavern, sillytavern_version: 1.16.0 } # renovate: docker=ghcr.io/sillytavern/sillytavern
     - { role: stash, stash_version: 1.73.1 } # renovate: docker=rclone/rclone
     - { role: tailscale, tailscale_version: 1.92.5 } # renovate: docker=tailscale/tailscale
-    - { role: woodpecker, woodpecker_version: 3.12.0 } # renovate: docker=woodpeckerci/woodpecker-server
+    - { role: woodpecker, woodpecker_version: 3.13.0 } # renovate: docker=woodpeckerci/woodpecker-server
     - role: karakeep
       karakeep_version: 0.31.0 # renovate: docker=ghcr.io/karakeep-app/karakeep
       karakeep_chrome_version: 124 # renovate: docker=gcr.io/zenika-hub/alpine-chrome
