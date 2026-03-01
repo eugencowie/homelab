@@ -31,7 +31,7 @@
     - { role: jellyfin, jellyfin_version: 10.11.6 } # renovate: docker=jellyfin/jellyfin
     - { role: n8n, n8n_version: 2.3.2 } # renovate: docker=n8nio/n8n
     - { role: nextcloud, nextcloud_version: 32.0.3 } # renovate: docker=linuxserver/nextcloud
-    - { role: openwebui, openwebui_version: v0.8.3 } # renovate: docker=ghcr.io/open-webui/open-webui
+    - { role: openwebui, openwebui_version: v0.8.5 } # renovate: docker=ghcr.io/open-webui/open-webui
     - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
     - { role: sillytavern, sillytavern_version: 1.16.0 } # renovate: docker=ghcr.io/sillytavern/sillytavern
     - { role: stash, stash_version: 1.73.1 } # renovate: docker=rclone/rclone
