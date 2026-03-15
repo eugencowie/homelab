@@ -3,6 +3,11 @@ networks:
     name: caddy
     external: true
 
+configs:
+  custom-css:
+    name: "openwebui_config_{{ (lookup('file', role_path + '/files/custom.css') | hash('sha256'))[:7] }}"
+    external: true
+
 volumes:
   data:
 
@@ -12,6 +17,9 @@ services:
     environment:
       - RAG_EMBEDDING_ENGINE=ollama # https://docs.openwebui.com/tutorials/tips/reduce-ram-usage
       - AUDIO_STT_ENGINE=openai     # https://docs.openwebui.com/tutorials/tips/reduce-ram-usage
+    configs:
+      - source: custom-css
+        target: /app/build/static/custom.css
     volumes:
       - data:/app/backend/data
     deploy:
