@@ -4,7 +4,7 @@ when:
 
 steps:
   - name: renovate
-    image: ghcr.io/renovatebot/renovate:43.77.7
+    image: ghcr.io/renovatebot/renovate:43.84.2
     environment:
       RENOVATE_PLATFORM: forgejo
       RENOVATE_ENDPOINT: https://codeberg.org/api/v1/
