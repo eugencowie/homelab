@@ -34,7 +34,7 @@
     - { role: openwebui, openwebui_version: v0.8.12 } # renovate: docker=ghcr.io/open-webui/open-webui
     - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
     - { role: sillytavern, sillytavern_version: 1.16.0 } # renovate: docker=ghcr.io/sillytavern/sillytavern
-    - { role: stash, stash_version: 1.73.1 } # renovate: docker=rclone/rclone
+    - { role: stash, stash_version: 1.73.3 } # renovate: docker=rclone/rclone
     - { role: tailscale, tailscale_version: 1.94.2 } # renovate: docker=tailscale/tailscale
     - { role: woodpecker, woodpecker_version: 3.13.0 } # renovate: docker=woodpeckerci/woodpecker-server
     - role: karakeep
