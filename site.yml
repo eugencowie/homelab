@@ -23,7 +23,7 @@
   roles:
     - { role: caddy, caddy_version: 2.11.1 } # renovate: docker=caddy
     - { role: actual, actual_version: 26.2.1 } # renovate: docker=actualbudget/actual-server
-    - { role: adguard, adguard_version: 0.107.72 } # renovate: docker=adguard/adguardhome
+    - { role: adguard, adguard_version: 0.107.73 } # renovate: docker=adguard/adguardhome
     - { role: bitwarden, bitwarden_version: 1.35.4 } # renovate: docker=vaultwarden/server
     - { role: davinci, davinci_version: 13.23 } # renovate: docker=postgres
     - { role: glance, glance_version: 0.8.4 } # renovate: docker=glanceapp/glance
