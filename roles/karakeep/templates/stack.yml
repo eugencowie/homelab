@@ -32,7 +32,7 @@ services:
           - node.hostname == {{ ansible_facts['hostname'] }}
 
   chrome:
-    image: gcr.io/zenika-hub/alpine-chrome:{{ karakeep_chrome_version }}
+    image: gcr.io/zenika-hub/alpine-chrome:124
     command:
       - --no-sandbox
       - --disable-gpu
@@ -46,7 +46,7 @@ services:
           - node.hostname == {{ ansible_facts['hostname'] }}
 
   meili:
-    image: getmeili/meilisearch:v{{ karakeep_meili_version }}
+    image: getmeili/meilisearch:v1.13.3
     environment:
       - MEILI_MASTER_KEY={{ karakeep_meili_master_key }}
       - MEILI_NO_ANALYTICS=true
