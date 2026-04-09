@@ -32,7 +32,6 @@ services:
   agent:
     image: "woodpeckerci/woodpecker-agent:v{{ woodpecker_version }}"
     command: agent
-    depends_on: [woodpecker]
     environment:
       - WOODPECKER_SERVER=woodpecker:9000
       - WOODPECKER_AGENT_SECRET={{ woodpecker_agent_secret }}
