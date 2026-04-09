@@ -39,8 +39,3 @@ services:
       placement:
         constraints:
           - node.hostname == {{ ansible_facts['hostname'] }}
-    healthcheck:
-        test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
-        interval: 5s
-        timeout: 10s
-        retries: 5
