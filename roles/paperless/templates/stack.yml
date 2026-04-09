@@ -21,10 +21,6 @@ services:
       - data:/usr/src/paperless/data
       - media:/usr/src/paperless/media
       - /mnt/wd_elements/Data/Apps/Paperless:/usr/src/paperless/export
-    depends_on:
-      - redis
-      - tika
-      - gotenberg
     deploy:
       labels:
         caddy: docs.echocharlie.xyz

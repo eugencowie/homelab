@@ -19,9 +19,6 @@ services:
       - NEXTAUTH_URL=https://saved.echocharlie.xyz
     volumes:
       - data:/data
-    depends_on:
-      - chrome
-      - meili
     deploy:
       labels:
         caddy: saved.echocharlie.xyz
