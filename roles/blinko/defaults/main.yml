@@ -1,0 +1,4 @@
+blinko_version: latest
+
+blinko_nextauth_secret:
+blinko_postgres_password:
