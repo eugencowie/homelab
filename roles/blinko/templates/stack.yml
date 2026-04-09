@@ -18,8 +18,6 @@ services:
       - DATABASE_URL=postgresql://postgres:{{ blinko_postgres_password }}@postgres:5432/postgres
     volumes:
       - config:/app/.blinko
-    depends_on:
-      - postgres
     deploy:
       labels:
         caddy: notes.echocharlie.xyz
