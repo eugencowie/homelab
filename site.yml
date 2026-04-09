@@ -35,13 +35,9 @@
     - { role: n8n, n8n_version: 2.12.2 } # renovate: docker=n8nio/n8n
     - { role: nextcloud, nextcloud_version: 33.0.0 } # renovate: docker=linuxserver/nextcloud
     - { role: openwebui, openwebui_version: v0.8.12 } # renovate: docker=ghcr.io/open-webui/open-webui
+    - { role: paperless, paperless_version: 2.20.9 } # renovate: docker=ghcr.io/paperless-ngx/paperless-ngx
     - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
     - { role: sillytavern, sillytavern_version: 1.17.0 } # renovate: docker=ghcr.io/sillytavern/sillytavern
     - { role: stash, stash_version: 1.73.3 } # renovate: docker=rclone/rclone
     - { role: tailscale, tailscale_version: 1.94.2 } # renovate: docker=tailscale/tailscale
     - { role: woodpecker, woodpecker_version: 3.13.0 } # renovate: docker=woodpeckerci/woodpecker-server
-    - role: paperless
-      paperless_version: 2.20.9 # renovate: docker=ghcr.io/paperless-ngx/paperless-ngx
-      paperless_redis_version: 8.6.1 # renovate: docker=redis
-      paperless_tika_version: 3.2.3.0 # renovate: docker=apache/tika
-      paperless_gotenberg_version: 8.26.0 # renovate: docker=gotenberg/gotenberg
