@@ -13,7 +13,7 @@ volumes:
 
 services:
   openwebui:
-    image: "ghcr.io/open-webui/open-webui:{{ openwebui_version }}"
+    image: "ghcr.io/open-webui/open-webui:v{{ openwebui_version }}"
     environment:
       - RAG_EMBEDDING_ENGINE=ollama # https://docs.openwebui.com/tutorials/tips/reduce-ram-usage
       - AUDIO_STT_ENGINE=openai     # https://docs.openwebui.com/tutorials/tips/reduce-ram-usage
