@@ -35,7 +35,7 @@ services:
           - node.hostname == {{ ansible_facts['hostname'] }}
 
   redis:
-    image: redis:{{ paperless_redis_version }}
+    image: redis:8.6.1
     volumes:
       - cache:/data
     deploy:
@@ -44,14 +44,14 @@ services:
           - node.hostname == {{ ansible_facts['hostname'] }}
 
   tika:
-    image: apache/tika:{{ paperless_tika_version }}
+    image: apache/tika:3.2.3.0
     deploy:
       placement:
         constraints:
           - node.hostname == {{ ansible_facts['hostname'] }}
 
   gotenberg:
-    image: gotenberg/gotenberg:{{ paperless_gotenberg_version }}
+    image: gotenberg/gotenberg:8.26.0
     command: gotenberg --chromium-disable-javascript=true --chromium-allow-list=file:///tmp/.*
     deploy:
       placement:
