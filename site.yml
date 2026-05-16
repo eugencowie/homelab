@@ -40,4 +40,4 @@
     - { role: sillytavern, sillytavern_version: 1.17.0 } # renovate: docker=ghcr.io/sillytavern/sillytavern
     - { role: stash, stash_version: 1.74.1 } # renovate: docker=rclone/rclone
     - { role: tailscale, tailscale_version: 1.94.2 } # renovate: docker=tailscale/tailscale
-    - { role: woodpecker, woodpecker_version: 3.13.0 } # renovate: docker=woodpeckerci/woodpecker-server
+    - { role: woodpecker, woodpecker_version: 3.14.1 } # renovate: docker=woodpeckerci/woodpecker-server
