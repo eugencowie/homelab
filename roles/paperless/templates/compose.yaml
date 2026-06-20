@@ -1,0 +1,55 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  data:
+  media:
+  cache:
+
+services:
+  paperless:
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.20.9
+    environment:
+      - PAPERLESS_URL=https://docs.echocharlie.xyz
+      - PAPERLESS_REDIS=redis://redis:6379
+      - PAPERLESS_TIKA_ENABLED=1
+      - PAPERLESS_TIKA_ENDPOINT=http://tika:9998
+      - PAPERLESS_TIKA_GOTENBERG_ENDPOINT=http://gotenberg:3000
+    volumes:
+      - data:/usr/src/paperless/data
+      - media:/usr/src/paperless/media
+      - /mnt/wd_elements/Data/Apps/Paperless:/usr/src/paperless/export
+    deploy:
+      labels:
+        caddy: docs.echocharlie.xyz
+        caddy.reverse_proxy: paperless:8000
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
+
+  redis:
+    image: redis:8.6.1
+    volumes:
+      - cache:/data
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
+
+  tika:
+    image: apache/tika:3.2.3.0
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
+
+  gotenberg:
+    image: gotenberg/gotenberg:8.26.0
+    command: gotenberg --chromium-disable-javascript=true --chromium-allow-list=file:///tmp/.*
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}

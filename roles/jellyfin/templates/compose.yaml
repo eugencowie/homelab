@@ -1,0 +1,24 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  config:
+  cache:
+
+services:
+  jellyfin:
+    image: "jellyfin/jellyfin:10.11.6"
+    volumes:
+      - config:/config
+      - cache:/cache
+      - /mnt/wd_elements/Media:/media
+    deploy:
+      labels:
+        caddy: tv.echocharlie.xyz
+        caddy.reverse_proxy: jellyfin:8096
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}

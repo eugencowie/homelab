@@ -1,5 +1,5 @@
 - name: Deploy stack
   community.docker.docker_stack:
     name: davinci
-    compose: ["{{ lookup('template', 'stack.yml') | from_yaml }}"]
+    compose: ["{{ lookup('template', 'compose.yaml') | from_yaml }}"]
   notify: Prune Docker images

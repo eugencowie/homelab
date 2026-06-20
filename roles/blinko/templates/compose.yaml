@@ -1,0 +1,41 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  config:
+  data:
+
+services:
+  blinko:
+    image: blinkospace/blinko:1.8.6
+    environment:
+      - NODE_ENV=production
+      - NEXTAUTH_URL=https://notes.echocharlie.xyz
+      - NEXT_PUBLIC_BASE_URL=https://notes.echocharlie.xyz
+      - NEXTAUTH_SECRET={{ blinko_nextauth_secret }}
+      - DATABASE_URL=postgresql://postgres:{{ blinko_postgres_password }}@postgres:5432/postgres
+    volumes:
+      - config:/app/.blinko
+    deploy:
+      labels:
+        caddy: notes.echocharlie.xyz
+        caddy.reverse_proxy: blinko:1111
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
+
+  postgres:
+    image: postgres:14
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD={{ blinko_postgres_password }}
+    volumes:
+      - data:/var/lib/postgresql/data
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}

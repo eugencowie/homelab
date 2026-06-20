@@ -1,5 +1,25 @@
+- name: Set user environment
+  ansible.builtin.set_fact:
+    samba_user_environment: >-
+      {{
+        samba_user_environment | default({}) |
+        combine({'USER' ~ (item.0 + 1): item.1.username ~ ';' ~ item.1.password})
+      }}
+  with_indexed_items: "{{ samba_users | default([]) }}"
+
 - name: Deploy stack
   community.docker.docker_stack:
     name: samba
-    compose: ["{{ lookup('template', 'stack.yml') | from_yaml }}"]
+    compose:
+      - >-
+        {{
+          lookup('template', 'compose.yaml') | from_yaml |
+          combine({
+            'services': {
+              'samba': {
+                'environment': samba_user_environment | default({})
+              }
+            }
+          }, recursive=True)
+        }}
   notify: Prune Docker images
