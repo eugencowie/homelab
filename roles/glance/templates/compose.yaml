@@ -22,7 +22,7 @@ configs:
 
 services:
   glance:
-    image: "glanceapp/glance:v0.8.4"
+    image: glanceapp/glance:v0.8.4
     configs:
       - source: gaming
         target: /app/config/gaming.yml
