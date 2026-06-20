@@ -17,6 +17,7 @@
     - vault/bitwarden.yml
     - vault/davinci.yml
     - vault/karakeep.yml
+    - vault/hermes.yml
     - vault/matrix.yml
     - vault/samba.yml
     - vault/stash.yml
@@ -31,6 +32,7 @@
     - davinci
     - glance
     - heimdall
+    - hermes
     - jellyfin
     - karakeep
     - matrix
