@@ -10,7 +10,7 @@ volumes:
 
 services:
   paperless:
-    image: ghcr.io/paperless-ngx/paperless-ngx:{{ paperless_version }}
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.20.9
     environment:
       - PAPERLESS_URL=https://docs.echocharlie.xyz
       - PAPERLESS_REDIS=redis://redis:6379

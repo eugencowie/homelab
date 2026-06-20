@@ -8,7 +8,7 @@ volumes:
 
 services:
   n8n:
-    image: n8nio/n8n:{{ n8n_version }}
+    image: n8nio/n8n:2.12.2
     environment:
       - N8N_HOST=cron.echocharlie.xyz
       - N8N_PORT=5678

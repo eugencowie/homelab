@@ -9,7 +9,7 @@ volumes:
 
 services:
   blinko:
-    image: blinkospace/blinko:{{ blinko_version }}
+    image: blinkospace/blinko:1.8.6
     environment:
       - NODE_ENV=production
       - NEXTAUTH_URL=https://notes.echocharlie.xyz

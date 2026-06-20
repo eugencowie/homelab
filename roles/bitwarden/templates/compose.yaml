@@ -8,7 +8,7 @@ volumes:
 
 services:
   bitwarden:
-    image: "vaultwarden/server:{{ bitwarden_version }}"
+    image: "vaultwarden/server:1.36.0"
     environment:
       - "ADMIN_TOKEN={{ bitwarden_admin_token }}"
     volumes:

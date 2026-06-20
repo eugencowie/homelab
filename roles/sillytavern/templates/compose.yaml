@@ -13,7 +13,7 @@ volumes:
 
 services:
   sillytavern:
-    image: "ghcr.io/sillytavern/sillytavern:{{ sillytavern_version }}"
+    image: "ghcr.io/sillytavern/sillytavern:1.18.0"
     configs:
       - source: config
         target: /home/node/app/config/config.yaml

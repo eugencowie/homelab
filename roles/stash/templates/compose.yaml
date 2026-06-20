@@ -8,7 +8,7 @@ volumes:
 
 services:
   stash:
-    image: "rclone/rclone:{{ stash_version }}"
+    image: "rclone/rclone:1.74.1"
     command: "serve webdav --addr :80 --user {{ stash_user.username }} --pass {{ stash_user.password }} Stash:"
     environment:
       - PHP_TZ=Europe/London

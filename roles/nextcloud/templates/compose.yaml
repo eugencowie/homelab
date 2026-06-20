@@ -9,7 +9,7 @@ volumes:
 
 services:
   nextcloud:
-    image: "linuxserver/nextcloud:{{ nextcloud_version }}"
+    image: "linuxserver/nextcloud:33.0.0"
     volumes:
       - config:/config
       - data:/data

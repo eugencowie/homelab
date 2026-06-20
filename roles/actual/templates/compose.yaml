@@ -4,17 +4,17 @@ networks:
     external: true
 
 volumes:
-  config:
+  data:
 
 services:
-  heimdall:
-    image: "linuxserver/heimdall:{{ heimdall_version }}"
+  actual:
+    image: actualbudget/actual-server:26.2.1
     volumes:
-      - config:/config
+      - data:/data
     deploy:
       labels:
-        caddy: echocharlie.xyz, www.echocharlie.xyz
-        caddy.reverse_proxy: heimdall:80
+        caddy: money.echocharlie.xyz
+        caddy.reverse_proxy: actual:5006
         caddy.import: dns
       placement:
         constraints:

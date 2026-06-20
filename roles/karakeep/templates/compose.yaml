@@ -9,7 +9,7 @@ volumes:
 
 services:
   karakeep:
-    image: ghcr.io/karakeep-app/karakeep:{{ karakeep_version }}
+    image: ghcr.io/karakeep-app/karakeep:0.31.0
     environment:
       - DATA_DIR=/data
       - BROWSER_WEB_URL=http://chrome:9222

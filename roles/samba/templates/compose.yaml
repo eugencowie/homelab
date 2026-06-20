@@ -13,9 +13,6 @@ services:
     environment:
       USERID: 0
       GROUPID: 0
-{% for user in samba_users %}
-      "USER{{ loop.index }}": "{{ user.username }};{{ user.password }}"
-{% endfor %}
       SHARE: Data;/mnt;yes;no;no;all
       GLOBAL: hide files = $$RECYCLE.BIN/System Volume Information
       SMB: 1

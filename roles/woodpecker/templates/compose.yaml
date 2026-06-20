@@ -9,7 +9,7 @@ volumes:
 
 services:
   woodpecker:
-    image: "woodpeckerci/woodpecker-server:v{{ woodpecker_version }}"
+    image: "woodpeckerci/woodpecker-server:v3.14.1"
     environment:
       - WOODPECKER_OPEN=true
       - WOODPECKER_HOST=https://ci.echocharlie.xyz
@@ -30,7 +30,7 @@ services:
           - node.hostname == {{ ansible_facts['hostname'] }}
 
   agent:
-    image: "woodpeckerci/woodpecker-agent:v{{ woodpecker_version }}"
+    image: "woodpeckerci/woodpecker-agent:v3.14.1"
     command: agent
     environment:
       - WOODPECKER_SERVER=woodpecker:9000

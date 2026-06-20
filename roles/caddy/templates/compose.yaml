@@ -9,7 +9,7 @@ volumes:
 
 services:
   caddy:
-    image: "caddy:{{ caddy_version }}-custom"
+    image: "caddy:{{ caddy_image_tag }}"
     volumes:
       - data:/data
       - /var/run/docker.sock:/var/run/docker.sock
