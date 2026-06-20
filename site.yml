@@ -22,22 +22,22 @@
     - vault/tailscale.yml
     - vault/woodpecker.yml
   roles:
-    - { role: caddy, caddy_version: 2.11.3 } # renovate: docker=caddy
-    - { role: actual, actual_version: 26.2.1 } # renovate: docker=actualbudget/actual-server
-    - { role: adguard, adguard_version: 0.107.74 } # renovate: docker=adguard/adguardhome
-    - { role: bitwarden, bitwarden_version: 1.36.0 } # renovate: docker=vaultwarden/server
-    - { role: blinko, blinko_version: 1.8.6 } # renovate: docker=blinkospace/blinko
-    - { role: davinci, davinci_version: 13.23 } # renovate: docker=postgres
-    - { role: glance, glance_version: 0.8.4 } # renovate: docker=glanceapp/glance
-    - { role: heimdall, heimdall_version: 2.7.6 } # renovate: docker=linuxserver/heimdall
-    - { role: jellyfin, jellyfin_version: 10.11.6 } # renovate: docker=jellyfin/jellyfin
-    - { role: karakeep, karakeep_version: 0.31.0 } # renovate: docker=ghcr.io/karakeep-app/karakeep
-    - { role: n8n, n8n_version: 2.12.2 } # renovate: docker=n8nio/n8n
-    - { role: nextcloud, nextcloud_version: 33.0.0 } # renovate: docker=linuxserver/nextcloud
-    - { role: openwebui, openwebui_version: 0.9.5 } # renovate: docker=ghcr.io/open-webui/open-webui
-    - { role: paperless, paperless_version: 2.20.9 } # renovate: docker=ghcr.io/paperless-ngx/paperless-ngx
-    - { role: samba, samba_version: latest } # renovate: docker=dperson/samba
-    - { role: sillytavern, sillytavern_version: 1.18.0 } # renovate: docker=ghcr.io/sillytavern/sillytavern
-    - { role: stash, stash_version: 1.74.1 } # renovate: docker=rclone/rclone
-    - { role: tailscale, tailscale_version: 1.94.2 } # renovate: docker=tailscale/tailscale
-    - { role: woodpecker, woodpecker_version: 3.14.1 } # renovate: docker=woodpeckerci/woodpecker-server
+    - caddy
+    - actual
+    - adguard
+    - bitwarden
+    - blinko
+    - davinci
+    - glance
+    - heimdall
+    - jellyfin
+    - karakeep
+    - n8n
+    - nextcloud
+    - openwebui
+    - paperless
+    - samba
+    - sillytavern
+    - stash
+    - tailscale
+    - woodpecker

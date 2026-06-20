@@ -1,0 +1,21 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  data:
+
+services:
+  actual:
+    image: actualbudget/actual-server:26.2.1
+    volumes:
+      - data:/data
+    deploy:
+      labels:
+        caddy: money.echocharlie.xyz
+        caddy.reverse_proxy: actual:5006
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}

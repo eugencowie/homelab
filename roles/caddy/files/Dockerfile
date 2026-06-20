@@ -1,12 +1,10 @@
-ARG VERSION
-
-FROM caddy:${VERSION}-builder AS builder
+FROM caddy:2.11.3-builder AS builder
 
 RUN xcaddy build \
     --with github.com/caddy-dns/cloudflare \
     --with github.com/lucaslorentz/caddy-docker-proxy/v2
 
-FROM caddy:${VERSION}
+FROM caddy:2.11.3
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 

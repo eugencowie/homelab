@@ -1,5 +1,3 @@
-woodpecker_version: latest
-
 woodpecker_forgejo_url:
 woodpecker_forgejo_client:
 woodpecker_forgejo_secret:

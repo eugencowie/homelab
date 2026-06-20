@@ -1,6 +1,6 @@
 - name: Check for existing image
   community.docker.docker_image_info:
-    name: "caddy:{{ caddy_version }}-custom"
+    name: "caddy:{{ caddy_image_tag }}"
   register: caddy_image
 
 - name: Create build directory
@@ -20,10 +20,8 @@
 - name: Build image
   community.docker.docker_image:
     name: caddy
-    tag: "{{ caddy_version }}-custom"
+    tag: "{{ caddy_image_tag }}"
     source: build
     build:
       path: "{{ caddy_build_dir.path }}"
-      args:
-        VERSION: "{{ caddy_version }}"
   when: not caddy_image.images

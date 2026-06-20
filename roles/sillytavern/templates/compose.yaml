@@ -1,0 +1,29 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+configs:
+  config:
+    name: "sillytavern_config_{{ (lookup('file', role_path + '/files/config.yml') | hash('sha256'))[:7] }}"
+    external: true
+
+volumes:
+  data:
+
+services:
+  sillytavern:
+    image: "ghcr.io/sillytavern/sillytavern:1.18.0"
+    configs:
+      - source: config
+        target: /home/node/app/config/config.yaml
+    volumes:
+      - data:/home/node/app/data
+    deploy:
+      labels:
+        caddy: tavern.echocharlie.xyz
+        caddy.reverse_proxy: sillytavern:8000
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}

@@ -1,0 +1,46 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+configs:
+  gaming:
+    name: "glance_gaming_{{ (lookup('file', role_path + '/files/gaming.yml') | hash('sha256'))[:7] }}"
+    external: true
+  glance:
+    name: "glance_glance_{{ (lookup('file', role_path + '/files/glance.yml') | hash('sha256'))[:7] }}"
+    external: true
+  home:
+    name: "glance_home_{{ (lookup('file', role_path + '/files/home.yml') | hash('sha256'))[:7] }}"
+    external: true
+  markets:
+    name: "glance_markets_{{ (lookup('file', role_path + '/files/markets.yml') | hash('sha256'))[:7] }}"
+    external: true
+  startpage:
+    name: "glance_startpage_{{ (lookup('file', role_path + '/files/startpage.yml') | hash('sha256'))[:7] }}"
+    external: true
+
+services:
+  glance:
+    image: "glanceapp/glance:v0.8.4"
+    configs:
+      - source: gaming
+        target: /app/config/gaming.yml
+      - source: glance
+        target: /app/config/glance.yml
+      - source: home
+        target: /app/config/home.yml
+      - source: markets
+        target: /app/config/markets.yml
+      - source: startpage
+        target: /app/config/startpage.yml
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    deploy:
+      labels:
+        caddy: dash.echocharlie.xyz
+        caddy.reverse_proxy: glance:8080
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
