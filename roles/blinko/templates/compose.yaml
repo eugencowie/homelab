@@ -28,7 +28,7 @@ services:
           - node.hostname == {{ ansible_facts['hostname'] }}
 
   postgres:
-    image: postgres:14
+    image: postgres:18
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
