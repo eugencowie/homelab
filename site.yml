@@ -17,6 +17,7 @@
     - vault/bitwarden.yml
     - vault/davinci.yml
     - vault/karakeep.yml
+    - vault/matrix.yml
     - vault/samba.yml
     - vault/stash.yml
     - vault/tailscale.yml
@@ -32,6 +33,7 @@
     - heimdall
     - jellyfin
     - karakeep
+    - matrix
     - n8n
     - nextcloud
     - openwebui
