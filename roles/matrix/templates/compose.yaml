@@ -1,0 +1,52 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+configs:
+  config:
+    name: "matrix_config_{{ (lookup('template', role_path + '/templates/config.json') | hash('sha256'))[:7] }}"
+    external: true
+  homeserver:
+    name: "matrix_homeserver_{{ (lookup('template', role_path + '/templates/homeserver.yaml') | hash('sha256'))[:7] }}"
+    external: true
+  signing_key:
+    name: "matrix_signing_key_{{ (matrix_signing_key | hash('sha256'))[:7] }}"
+    external: true
+
+volumes:
+  data:
+
+services:
+  element:
+    image: vectorim/element-web:v1.12.21
+    configs:
+      - source: config
+        target: /app/config.json
+    deploy:
+      labels:
+        caddy: matrix.echocharlie.xyz
+        caddy.handle_0: /_matrix/*
+        caddy.handle_0.reverse_proxy: synapse:8008
+        caddy.handle_1: /_synapse/client/*
+        caddy.handle_1.reverse_proxy: synapse:8008
+        caddy.handle_2:
+        caddy.handle_2.reverse_proxy: element:80
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
+
+  synapse:
+    image: matrixdotorg/synapse:v1.130.0
+    configs:
+      - source: homeserver
+        target: /data/homeserver.yaml
+      - source: signing_key
+        target: /data/matrix.echocharlie.xyz.signing.key
+    volumes:
+      - data:/data
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}

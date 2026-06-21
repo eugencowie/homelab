@@ -1,0 +1,5 @@
+- name: Deploy stack
+  community.docker.docker_stack:
+    name: hermes
+    compose: ["{{ lookup('template', 'compose.yaml') | from_yaml }}"]
+  notify: Prune Docker images

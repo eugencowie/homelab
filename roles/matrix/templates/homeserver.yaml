@@ -1,0 +1,29 @@
+server_name: "matrix.echocharlie.xyz"
+pid_file: /data/homeserver.pid
+web_client_location: "https://matrix.echocharlie.xyz/"
+public_baseurl: "https://matrix.echocharlie.xyz/"
+
+listeners:
+  - port: 8008
+    tls: false
+    type: http
+    x_forwarded: true
+    resources:
+      - names: [client]
+        compress: false
+
+database:
+  name: sqlite3
+  args:
+    database: /data/homeserver.db
+
+media_store_path: /data/media_store
+signing_key_path: "/data/matrix.echocharlie.xyz.signing.key"
+macaroon_secret_key: "{{ matrix_macaroon_secret_key }}"
+form_secret: "{{ matrix_form_secret }}"
+registration_shared_secret: "{{ matrix_registration_shared_secret }}"
+
+enable_registration: true
+enable_registration_without_verification: true
+report_stats: false
+trusted_key_servers: []

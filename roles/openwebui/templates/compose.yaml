@@ -13,10 +13,10 @@ volumes:
 
 services:
   openwebui:
-    image: "ghcr.io/open-webui/open-webui:v0.9.5-slim"
+    image: ghcr.io/open-webui/open-webui:v0.9.5-slim
     environment:
       - RAG_EMBEDDING_ENGINE=ollama # https://docs.openwebui.com/tutorials/tips/reduce-ram-usage
-      - AUDIO_STT_ENGINE=openai     # https://docs.openwebui.com/tutorials/tips/reduce-ram-usage
+      - AUDIO_STT_ENGINE=openai # https://docs.openwebui.com/tutorials/tips/reduce-ram-usage
     configs:
       - source: custom-css
         target: /app/build/static/custom.css

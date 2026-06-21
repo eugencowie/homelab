@@ -1,0 +1,16 @@
+{
+  "default_server_config": {
+    "m.homeserver": {
+      "base_url": "https://matrix.echocharlie.xyz",
+      "server_name": "matrix.echocharlie.xyz"
+    }
+  },
+  "disable_custom_urls": false,
+  "disable_guests": true,
+  "brand": "Element",
+  "integrations_ui_url": "",
+  "integrations_rest_url": "",
+  "integrations_widgets_urls": [],
+  "hosting_signup_link": "",
+  "bug_report_endpoint_url": ""
+}
