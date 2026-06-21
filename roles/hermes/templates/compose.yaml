@@ -1,0 +1,33 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  data:
+
+services:
+  hermes:
+    image: nousresearch/hermes-agent:v2026.6.19
+    command: gateway run
+    environment:
+      - HERMES_DASHBOARD=true
+      - HERMES_DASHBOARD_INSECURE=true
+      - MATRIX_HOMESERVER=https://matrix.echocharlie.xyz
+      - MATRIX_ACCESS_TOKEN={{ hermes_matrix_access_token }}
+      - MATRIX_RECOVERY_KEY={{ hermes_matrix_recovery_key }}
+      - MATRIX_USER_ID=@hermes:matrix.echocharlie.xyz
+      - MATRIX_E2EE_MODE=optional
+      - MATRIX_SESSION_SCOPE=room
+      - MATRIX_ALLOW_ALL_USERS=true
+      - GLM_API_KEY={{ hermes_glm_api_key }}
+    volumes:
+      - data:/opt/data
+    deploy:
+      labels:
+        caddy_0: hermes.echocharlie.xyz
+        caddy_0.reverse_proxy: hermes:9119
+        caddy_0.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}

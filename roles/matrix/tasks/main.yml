@@ -1,0 +1,25 @@
+- name: Create config
+  community.docker.docker_config:
+    name: "matrix_{{ item | basename | splitext | first }}_{{ (lookup('template', item) | hash('sha256'))[:7] }}"
+    data: "{{ lookup('template', item) }}"
+  with_fileglob:
+    - "{{ role_path }}/templates/*"
+
+- name: Create signing key
+  community.docker.docker_config:
+    name: "matrix_signing_key_{{ (matrix_signing_key | hash('sha256'))[:7] }}"
+    data: "{{ matrix_signing_key }}"
+
+- name: Fix volume ownership
+  ansible.builtin.file:
+    path: "{{ matrix_data_path }}"
+    state: directory
+    owner: "991"
+    group: "991"
+    mode: "0750"
+
+- name: Deploy stack
+  community.docker.docker_stack:
+    name: matrix
+    compose: ["{{ lookup('template', 'compose.yaml') | from_yaml }}"]
+  notify: Prune Docker images
