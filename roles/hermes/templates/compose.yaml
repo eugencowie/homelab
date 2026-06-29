@@ -19,7 +19,7 @@ services:
       - MATRIX_USER_ID=@hermes:matrix.echocharlie.xyz
       - MATRIX_E2EE_MODE=optional
       - MATRIX_SESSION_SCOPE=room
-      - MATRIX_ALLOW_ALL_USERS=true
+      - GATEWAY_ALLOW_ALL_USERS=true
       - GLM_API_KEY={{ hermes_glm_api_key }}
     volumes:
       - data:/opt/data
