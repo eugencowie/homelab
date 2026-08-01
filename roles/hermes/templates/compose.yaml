@@ -8,11 +8,12 @@ volumes:
 
 services:
   hermes:
-    image: nousresearch/hermes-agent:v2026.6.19
+    image: nousresearch/hermes-agent:v2026.7.1
     command: gateway run
     environment:
       - HERMES_DASHBOARD=true
-      - HERMES_DASHBOARD_INSECURE=true
+      - HERMES_DASHBOARD_BASIC_AUTH_USERNAME={{ hermes_dashboard_username }}
+      - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD={{ hermes_dashboard_password }}
       - MATRIX_HOMESERVER=https://matrix.echocharlie.xyz
       - MATRIX_ACCESS_TOKEN={{ hermes_matrix_access_token }}
       - MATRIX_RECOVERY_KEY={{ hermes_matrix_recovery_key }}
