@@ -8,7 +8,7 @@ volumes:
 
 services:
   adguard:
-    image: adguard/adguardhome:v0.107.74
+    image: adguard/adguardhome:v0.107.77
     volumes:
       - config:/opt/adguardhome/conf
       - config:/opt/adguardhome/work
