@@ -4,4 +4,13 @@ npm = "latest"
 "npm:@fission-ai/openspec" = "latest"
 pipx = "latest"
 "pipx:ansible-lint" = "latest"
+"pipx:cruft" = "latest"
 uv = "latest"
+
+[tasks."template:update"]
+description = "Update project with the latest changes from the template"
+run = "cruft update"
+
+[tasks."template:restore"]
+description = "Restore template-managed files"
+run = "cruft diff | git apply"
