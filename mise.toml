@@ -6,7 +6,7 @@ uv = "latest"
 
 [tasks."vault:password"]
 description = "Set the Vault password"
-run = "vim vault/.password"
+run = 'read -rsp "Vault password: " password && echo && printf "%s\n" "$password" > vault/.password'
 
 [tasks."ssh:copy-id"]
 description = "Copy SSH key to host"
