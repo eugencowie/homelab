@@ -9,7 +9,7 @@ volumes:
 
 services:
   nextcloud:
-    image: linuxserver/nextcloud:33.0.0
+    image: linuxserver/nextcloud:33.0.0@sha256:d9ca959d4f30356501a44d54a37fc1b627efe7a58afebafbb0a8928a32c601b3
     volumes:
       - config:/config
       - data:/data
