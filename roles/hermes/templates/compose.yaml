@@ -8,7 +8,7 @@ volumes:
 
 services:
   hermes:
-    image: nousresearch/hermes-agent:v2026.7.1
+    image: nousresearch/hermes-agent:v2026.7.1@sha256:b6c019227889e6675424a2b6223b2cafdd36bf7d1048d1ddd8e043b880d6cc0f
     command: gateway run
     environment:
       - HERMES_DASHBOARD=true

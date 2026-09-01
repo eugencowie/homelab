@@ -10,7 +10,7 @@ volumes:
 
 services:
   paperless:
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.20.9
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.20.9@sha256:1d99ede700ffdf7aa44899b5fee29c8c279f175769b6cb295e91e9f15772728e
     environment:
       - PAPERLESS_URL=https://docs.echocharlie.xyz
       - PAPERLESS_REDIS=redis://redis:6379
@@ -31,7 +31,7 @@ services:
           - node.hostname == {{ ansible_facts['hostname'] }}
 
   redis:
-    image: redis:8.6.1
+    image: redis:8.6.1@sha256:315270d166080f537bbdf1b489b603aaaa213cb55a544acfa51feb7481abb1c0
     volumes:
       - cache:/data
     deploy:
@@ -40,14 +40,14 @@ services:
           - node.hostname == {{ ansible_facts['hostname'] }}
 
   tika:
-    image: apache/tika:3.2.3.0
+    image: apache/tika:3.2.3.0@sha256:c0154cb95587cde64be74f35ada1a2bd7892219f3f0ac3c9dc6cab34046b3573
     deploy:
       placement:
         constraints:
           - node.hostname == {{ ansible_facts['hostname'] }}
 
   gotenberg:
-    image: gotenberg/gotenberg:8.26.0
+    image: gotenberg/gotenberg:8.26.0@sha256:328551506b3dec3ff6381dd47e5cd72a44def97506908269e201a8fbfa1c12c0
     command: gotenberg --chromium-disable-javascript=true --chromium-allow-list=file:///tmp/.*
     deploy:
       placement:
