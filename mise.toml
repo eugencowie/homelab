@@ -1,8 +1,5 @@
 [tools]
-ansible = { version = "latest", pipx_args = "--include-deps", uvx = "true" }
-npm = "latest"
-"npm:@fission-ai/openspec" = "latest"
-pipx = "latest"
+ansible = { version = "latest", uvx_args = "--include-deps" }
 "pipx:ansible-lint" = "latest"
 "pipx:cruft" = "latest"
 uv = "latest"
