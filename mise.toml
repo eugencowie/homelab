@@ -6,11 +6,13 @@ uv = "latest"
 
 [tasks."vault:password"]
 description = "Set the Vault password"
+shell = "bash -c" # required for `read -rsp`
 run = 'read -rsp "Vault password: " password && echo && printf "%s\n" "$password" > vault/.password'
 
 [tasks."ssh:copy-id"]
 description = "Copy SSH key to host"
-run = 'ssh-copy-id {{arg(name="host")}}'
+usage = 'arg "<host>"'
+run = 'ssh-copy-id "$usage_host"'
 
 [tasks.ping]
 description = "Check inventory"
@@ -26,11 +28,13 @@ run = "ansible-playbook site.yml"
 
 [tasks."vault:decrypt"]
 description = "Decrypt a Vault file"
-run = 'ansible-vault decrypt {{arg(name="file")}}'
+usage = 'arg "<file>"'
+run = 'ansible-vault decrypt "$usage_file"'
 
 [tasks."vault:encrypt"]
 description = "Encrypt a Vault file"
-run = 'ansible-vault encrypt {{arg(name="file")}}'
+usage = 'arg "<file>"'
+run = 'ansible-vault encrypt "$usage_file"'
 
 [tasks."template:update"]
 description = "Update project with the latest changes from the template"
