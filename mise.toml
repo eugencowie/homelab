@@ -4,6 +4,34 @@ ansible = { version = "latest", uvx_args = "--include-deps" }
 "pipx:cruft" = "latest"
 uv = "latest"
 
+[tasks."vault:password"]
+description = "Set the Vault password"
+run = "vim vault/.password"
+
+[tasks."ssh:copy-id"]
+description = "Copy SSH key to host"
+run = "ssh-copy-id dietpi@192.168.0.2"
+
+[tasks.ping]
+description = "Check inventory"
+run = "ansible all -m ping"
+
+[tasks.lint]
+description = "Lint playbook"
+run = "ansible-lint site.yml"
+
+[tasks.deploy]
+description = "Run playbook"
+run = "ansible-playbook site.yml"
+
+[tasks."vault:decrypt"]
+description = "Decrypt a Vault file"
+run = 'ansible-vault decrypt {{arg(name="file")}}'
+
+[tasks."vault:encrypt"]
+description = "Encrypt a Vault file"
+run = 'ansible-vault encrypt {{arg(name="file")}}'
+
 [tasks."template:update"]
 description = "Update project with the latest changes from the template"
 run = "cruft update"
