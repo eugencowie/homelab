@@ -7,11 +7,7 @@ backend = "pipx:ansible"
 [tools.ansible.options]
 pipx_args = "--include-deps"
 uvx = "true"
-uvx_args = "--with-executables-from ansible-core"
-
-[[tools."pipx:ansible-lint"]]
-version = "26.8.0"
-backend = "pipx:ansible-lint"
+uvx_args = "--with-executables-from ansible-core,ansible-lint"
 
 [[tools."pipx:cruft"]]
 version = "2.16.0"

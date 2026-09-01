@@ -1,6 +1,5 @@
 [tools]
-ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from ansible-core" }
-"pipx:ansible-lint" = "latest"
+ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from ansible-core,ansible-lint" }
 "pipx:cruft" = "latest"
 uv = "latest"
 
