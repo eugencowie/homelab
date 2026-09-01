@@ -6,7 +6,7 @@ Set Vault password:
 
 Copy SSH key to host:
 
-    mise run ssh:copy-id
+    mise run ssh:copy-id dietpi@192.168.0.2
 
 Check inventory:
 

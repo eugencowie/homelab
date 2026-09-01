@@ -10,7 +10,7 @@ run = 'read -rsp "Vault password: " password && echo && printf "%s\n" "$password
 
 [tasks."ssh:copy-id"]
 description = "Copy SSH key to host"
-run = "ssh-copy-id dietpi@192.168.0.2"
+run = 'ssh-copy-id {{arg(name="host")}}'
 
 [tasks.ping]
 description = "Check inventory"
