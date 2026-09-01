@@ -43,5 +43,12 @@
         },
       },
     },
+    {
+      description: 'Ignore the locally built Caddy image',
+      matchManagers: ['docker-compose'],
+      matchFileNames: ['roles/caddy/templates/compose.yaml'],
+      matchDepNames: ['caddy'],
+      enabled: false,
+    },
   ],
 }
