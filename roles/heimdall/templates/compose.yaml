@@ -8,7 +8,7 @@ volumes:
 
 services:
   heimdall:
-    image: linuxserver/heimdall:2.7.6
+    image: linuxserver/heimdall:2.7.6@sha256:536eb14f068fe3f052b92f94ca606db689d1d1b79b5408d1242c12e882e4ed66
     volumes:
       - config:/config
     deploy:
