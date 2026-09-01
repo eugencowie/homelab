@@ -1,11 +1,40 @@
 [tools]
-ansible = { version = "latest", pipx_args = "--include-deps", uvx = "true" }
-npm = "latest"
-"npm:@fission-ai/openspec" = "latest"
-pipx = "latest"
+ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from ansible-core" }
 "pipx:ansible-lint" = "latest"
 "pipx:cruft" = "latest"
 uv = "latest"
+
+[tasks."vault:password"]
+description = "Set the Vault password"
+shell = "bash -c" # required for `read -rsp`
+run = 'read -rsp "Vault password: " password && echo && printf "%s\n" "$password" > vault/.password'
+
+[tasks."ssh:copy-id"]
+description = "Copy SSH key to host"
+usage = 'arg "<host>"'
+run = 'ssh-copy-id "$usage_host"'
+
+[tasks.ping]
+description = "Check inventory"
+run = "ansible all -m ping"
+
+[tasks.lint]
+description = "Lint playbook"
+run = "ansible-lint site.yml"
+
+[tasks.deploy]
+description = "Run playbook"
+run = "ansible-playbook site.yml"
+
+[tasks."vault:decrypt"]
+description = "Decrypt a Vault file"
+usage = 'arg "<file>"'
+run = 'ansible-vault decrypt "$usage_file"'
+
+[tasks."vault:encrypt"]
+description = "Encrypt a Vault file"
+usage = 'arg "<file>"'
+run = 'ansible-vault encrypt "$usage_file"'
 
 [tasks."template:update"]
 description = "Update project with the latest changes from the template"

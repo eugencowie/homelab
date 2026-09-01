@@ -11,6 +11,9 @@ mise.local.toml
 .mise/*.local.toml
 mise/*.local.toml
 
+# https://mise.jdx.dev/configuration.html#tool-versions
+.tool-versions
+
 #
 # https://github.com/github/gitignore/blob/main/Global/Agents.gitignore
 #
