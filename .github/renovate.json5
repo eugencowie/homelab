@@ -1,6 +1,6 @@
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  extends: ['config:best-practices', ':dependencyDashboardApproval'],
+  extends: ['config:best-practices', 'schedule:weekly', ':dependencyDashboardApproval'],
   labels: ['chore'],
 
   customManagers: [
