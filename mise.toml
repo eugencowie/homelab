@@ -6,13 +6,42 @@ ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from 
 "pipx:cruft" = "latest"
 uv = "latest"
 
-[tasks]
-ping = { run = "ansible all -m ping", description = "Check inventory" }
-lint = { run = "ansible-lint site.yml", description = "Lint playbook" }
-deploy = { run = "ansible-playbook site.yml", description = "Run playbook" }
-"ssh:copy-id" = { usage = 'arg "<host>"', run = 'ssh-copy-id "$usage_host"', description = "Copy SSH key to host" }
-"vault:password" = { shell = "bash -c", run = 'read -rsp "Vault password: " password && echo && printf "%s\n" "$password" > vault/.password', description = "Set the Vault password" }
-"vault:decrypt" = { usage = 'arg "<file>"', run = 'ansible-vault decrypt "$usage_file"', description = "Decrypt a Vault file" }
-"vault:encrypt" = { usage = 'arg "<file>"', run = 'ansible-vault encrypt "$usage_file"', description = "Encrypt a Vault file" }
-"template:update" = { run = "cruft update", description = "Update project with the latest changes from the template" }
-"template:restore" = { run = "cruft diff | git apply", description = "Restore template-managed files" }
+[tasks.ping]
+description = "Check inventory"
+run = "ansible all -m ping"
+
+[tasks.lint]
+description = "Lint playbook"
+run = "ansible-lint site.yml"
+
+[tasks.deploy]
+description = "Run playbook"
+run = "ansible-playbook site.yml"
+
+[tasks."ssh:copy-id"]
+description = "Copy SSH key to host"
+usage = 'arg "<host>"'
+run = 'ssh-copy-id "$usage_host"'
+
+[tasks."vault:password"]
+description = "Set the Vault password"
+shell = "bash -c" # required for `read -rsp`
+run = 'read -rsp "Vault password: " password && echo && printf "%s\n" "$password" > vault/.password'
+
+[tasks."vault:decrypt"]
+description = "Decrypt a Vault file"
+usage = 'arg "<file>"'
+run = 'ansible-vault decrypt "$usage_file"'
+
+[tasks."vault:encrypt"]
+description = "Encrypt a Vault file"
+usage = 'arg "<file>"'
+run = 'ansible-vault encrypt "$usage_file"'
+
+[tasks."template:update"]
+description = "Update project with the latest changes from the template"
+run = "cruft update"
+
+[tasks."template:restore"]
+description = "Restore template-managed files"
+run = "cruft diff | git apply"
