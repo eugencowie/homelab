@@ -1,0 +1,9 @@
+diff a/.github/renovate.json5 b/.github/renovate.json5	(rejected hunks)
+@@ -1,6 +1,6 @@
+ {
+   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+-  extends: ['config:best-practices'],
++  extends: ['config:best-practices', 'schedule:weekly'],
+   labels: ['chore'],
+ 
+   customManagers: [
