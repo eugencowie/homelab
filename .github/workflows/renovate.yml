@@ -2,7 +2,7 @@ name: Renovate
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 3 * * 1'
   workflow_dispatch:
 
 permissions:
@@ -15,7 +15,7 @@ jobs:
   renovate:
     runs-on: ubuntu-latest
     steps:
-      - uses: renovatebot/github-action@39b914146caeff8cd512e61c8992f1d5913af85c # v46.2.5
+      - uses: renovatebot/github-action@37beffda261423addd537c33f2d126df7f6ffbab # v46.2.6
         with:
           renovate-version: 44.65.0@sha256:2c10dbd2e27cb13978ce8d0ea5db2a858d09d3ed9c7f4759acb796f7feb5fece
           token: ${{ secrets.RENOVATE_TOKEN || github.token }}
