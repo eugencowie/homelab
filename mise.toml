@@ -3,8 +3,9 @@ disable_backends = ["asdf"] # cannot be updated by Renovate
 
 [tools]
 ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from ansible-core,ansible-lint" }
+"aqua:astral-sh/uv" = "latest"
 "pipx:cruft" = "latest"
-uv = "latest"
+python = "latest"
 
 [tasks.ping]
 description = "Check inventory"
