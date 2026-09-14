@@ -1,7 +1,7 @@
 {
   "template": "https://github.com/eugencowie/templates",
-  "commit": "cdb4dff96deb09e0ed2c61e1555208823d2c8f53",
-  "checkout": "v1.5.12",
+  "commit": "9fb3642e0ca7d5d463d877ba5c53b74788787b31",
+  "checkout": "v1.5.15",
   "context": {
     "cookiecutter": {
       "project_slug": "homelab",
@@ -10,7 +10,7 @@
         ".github/workflows/renovate.yml"
       ],
       "_template": "https://github.com/eugencowie/templates",
-      "_commit": "cdb4dff96deb09e0ed2c61e1555208823d2c8f53"
+      "_commit": "9fb3642e0ca7d5d463d877ba5c53b74788787b31"
     }
   },
   "directory": "bare"
