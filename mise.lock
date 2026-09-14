@@ -5,7 +5,6 @@ version = "14.4.0"
 backend = "pipx:ansible"
 
 [tools.ansible.options]
-pipx_args = "--include-deps"
 uvx = "true"
 uvx_args = "--with-executables-from ansible-core,ansible-lint"
 
