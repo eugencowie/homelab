@@ -1,16 +1,16 @@
 {
   "template": "https://github.com/eugencowie/templates",
-  "commit": "9fb3642e0ca7d5d463d877ba5c53b74788787b31",
-  "checkout": "v1.5.15",
+  "commit": "2f09f89475cf1eaf0f421de804a09c5f54e5f151",
+  "checkout": "v1.6.8",
   "context": {
     "cookiecutter": {
-      "project_slug": "homelab",
       "_copy_without_render": [
         ".github/renovate.json5",
         ".github/workflows/renovate.yml"
       ],
+      "project_slug": "homelab",
       "_template": "https://github.com/eugencowie/templates",
-      "_commit": "9fb3642e0ca7d5d463d877ba5c53b74788787b31"
+      "_commit": "2f09f89475cf1eaf0f421de804a09c5f54e5f151"
     }
   },
   "directory": "bare"
