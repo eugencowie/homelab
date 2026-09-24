@@ -13,30 +13,23 @@
       detach: false
   vars_files:
     - vault/caddy.yml
-    - vault/blinko.yml
     - vault/bitwarden.yml
-    - vault/davinci.yml
     - vault/karakeep.yml
     - vault/hermes.yml
     - vault/matrix.yml
     - vault/samba.yml
     - vault/stash.yml
     - vault/tailscale.yml
-    - vault/woodpecker.yml
   roles:
     - caddy
-    - actual
     - adguard
     - bitwarden
-    - blinko
-    - davinci
     - glance
     - heimdall
     - hermes
     - jellyfin
     - karakeep
     - matrix
-    - n8n
     - nextcloud
     - openwebui
     - paperless
@@ -44,4 +37,3 @@
     - sillytavern
     - stash
     - tailscale
-    - woodpecker
