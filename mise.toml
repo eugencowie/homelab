@@ -7,6 +7,10 @@ ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from 
 "pipx:cruft" = "latest"
 python = "latest"
 
+[env]
+# shared by all worktrees: resolves to the main checkout's vault/.password
+ANSIBLE_VAULT_PASSWORD_FILE = "{{ exec(command='git rev-parse --path-format=absolute --git-common-dir') }}/../vault/.password"
+
 [tasks.ping]
 description = "Check inventory"
 run = "ansible all -m ping"
@@ -27,7 +31,7 @@ run = 'ssh-copy-id "$usage_host"'
 [tasks."vault:password"]
 description = "Set the Vault password"
 shell = "bash -c" # required for `read -rsp`
-run = 'read -rsp "Vault password: " password && echo && printf "%s\n" "$password" > vault/.password'
+run = 'read -rsp "Vault password: " password && echo && (umask 077 && printf "%s\n" "$password" > "$ANSIBLE_VAULT_PASSWORD_FILE")'
 
 [tasks."vault:decrypt"]
 description = "Decrypt a Vault file"
