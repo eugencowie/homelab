@@ -1,7 +1,7 @@
 {
   "template": "https://github.com/eugencowie/templates",
-  "commit": "2f09f89475cf1eaf0f421de804a09c5f54e5f151",
-  "checkout": "v1.6.8",
+  "commit": "9f8a227794488630d2c063014aadeb4298f80e1c",
+  "checkout": "v2.0.0",
   "context": {
     "cookiecutter": {
       "_copy_without_render": [
@@ -10,7 +10,7 @@
       ],
       "project_slug": "homelab",
       "_template": "https://github.com/eugencowie/templates",
-      "_commit": "2f09f89475cf1eaf0f421de804a09c5f54e5f151"
+      "_commit": "9f8a227794488630d2c063014aadeb4298f80e1c"
     }
   },
   "directory": "bare"
