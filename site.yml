@@ -14,7 +14,6 @@
   vars_files:
     - vault/caddy.yml
     - vault/bitwarden.yml
-    - vault/karakeep.yml
     - vault/hermes.yml
     - vault/matrix.yml
     - vault/samba.yml
@@ -24,15 +23,8 @@
     - caddy
     - adguard
     - bitwarden
-    - glance
-    - heimdall
     - hermes
-    - jellyfin
-    - karakeep
     - matrix
-    - nextcloud
-    - openwebui
-    - paperless
     - samba
     - sillytavern
     - stash
