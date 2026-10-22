@@ -1,0 +1,100 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+configs:
+  personal:
+    name: "windmill_personal_{{ (lookup('file', role_path + '/files/personal.sh') | hash('sha256'))[:7] }}"
+    external: true
+
+volumes:
+  cache:
+  data:
+  logs:
+  lsp:
+
+services:
+  windmill:
+    image: ghcr.io/windmill-labs/windmill:1.842.0@sha256:c717119891b2bc91c991360d921a6398b1a02705925f28112cf8c7c085348f77
+    environment:
+      - DATABASE_URL=postgres://postgres:{{ windmill_postgres_password }}@windmill-db/windmill?sslmode=disable
+      - MODE=server
+      - BASE_URL=https://data.echocharlie.xyz
+    volumes:
+      - logs:/tmp/windmill/logs
+    deploy:
+      labels:
+        caddy: data.echocharlie.xyz
+        caddy.reverse_proxy_0: /ws/* windmill-extra:3000
+        caddy.reverse_proxy_1: windmill:8000
+        caddy.import: dns
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
+
+  windmill-worker:
+    image: ghcr.io/windmill-labs/windmill:1.842.0@sha256:c717119891b2bc91c991360d921a6398b1a02705925f28112cf8c7c085348f77
+    environment:
+      - DATABASE_URL=postgres://postgres:{{ windmill_postgres_password }}@windmill-db/windmill?sslmode=disable
+      - MODE=worker
+      - WORKER_GROUP=default
+    volumes:
+      - cache:/tmp/windmill/cache
+      - logs:/tmp/windmill/logs
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
+
+  windmill-native:
+    image: ghcr.io/windmill-labs/windmill:1.842.0@sha256:c717119891b2bc91c991360d921a6398b1a02705925f28112cf8c7c085348f77
+    environment:
+      - DATABASE_URL=postgres://postgres:{{ windmill_postgres_password }}@windmill-db/windmill?sslmode=disable
+      - MODE=worker
+      - WORKER_GROUP=native
+      - NATIVE_MODE=true
+      - SLEEP_QUEUE=200
+    volumes:
+      - logs:/tmp/windmill/logs
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
+
+  windmill-extra:
+    image: ghcr.io/windmill-labs/windmill-extra:1.842.0@sha256:e84afdf142ff6c204247c6a035c805b48bfc482ee20116e5591c1303caa8f6d5
+    environment:
+      - ENABLE_LSP=true
+      - ENABLE_MULTIPLAYER=false
+      - ENABLE_DEBUGGER=false
+      - WINDMILL_BASE_URL=http://windmill:8000
+    volumes:
+      - lsp:/pyls/.cache
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
+
+  windmill-db:
+    image: postgres:18@sha256:1267c7e692de235fda2a50dbcdbcbca4672ea6a0298576a6bd9d07cafc319b32
+    environment:
+      - POSTGRES_DB=windmill
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD={{ windmill_postgres_password }}
+      - PERSONAL_PASSWORD={{ windmill_personal_password }}
+    configs:
+      - source: personal
+        target: /docker-entrypoint-initdb.d/personal.sh
+    volumes:
+      - data:/var/lib/postgresql
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == {{ ansible_facts['hostname'] }}
