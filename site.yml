@@ -20,6 +20,7 @@
     - vault/stash.yml
     - vault/tailscale.yml
   roles:
+    - kernel
     - caddy
     - adguard
     - bitwarden
