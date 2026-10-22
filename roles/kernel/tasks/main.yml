@@ -1,0 +1,15 @@
+# The Pi 5 default kernel uses 16K pages, which crashes jemalloc-linked
+# images such as Windmill. Boot the 4K-page kernel instead.
+- name: Install 4K page kernel
+  ansible.builtin.apt:
+    name: linux-image-rpi-v8
+    state: present
+
+- name: Boot 4K page kernel
+  ansible.builtin.lineinfile:
+    path: /boot/firmware/config.txt
+    line: kernel=kernel8.img
+  notify: Reboot
+
+- name: Reboot before deploying stacks
+  ansible.builtin.meta: flush_handlers

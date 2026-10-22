@@ -19,7 +19,9 @@
     - vault/samba.yml
     - vault/stash.yml
     - vault/tailscale.yml
+    - vault/windmill.yml
   roles:
+    - kernel
     - caddy
     - adguard
     - bitwarden
@@ -29,3 +31,4 @@
     - sillytavern
     - stash
     - tailscale
+    - windmill

@@ -1,0 +1,10 @@
+- name: Create init script
+  community.docker.docker_config:
+    name: "windmill_personal_{{ (lookup('file', 'personal.sh') | hash('sha256'))[:7] }}"
+    data: "{{ lookup('file', 'personal.sh') }}"
+
+- name: Deploy stack
+  community.docker.docker_stack:
+    name: windmill
+    compose: ["{{ lookup('template', 'compose.yaml') | from_yaml }}"]
+  notify: Prune Docker images
