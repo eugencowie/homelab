@@ -1,0 +1,37 @@
+secrets:
+  git_access_token:
+    name: dococd_git_access_token
+    external: true
+  sops_age_key:
+    name: dococd_sops_age_key
+    external: true
+
+volumes:
+  data:
+
+services:
+  dococd:
+    image: ghcr.io/kimdre/doco-cd:0.129.1@sha256:9c6e7f0040056465cdbc762b608c8893c64e691d464e34928c14338a6eaf6b8f
+    environment:
+      TZ: Europe/London
+      GIT_ACCESS_TOKEN_FILE: /run/secrets/git_access_token
+      GIT_COMMIT_STATUS: "true"
+      SOPS_AGE_KEY_FILE: /run/secrets/sops_age_key
+      POLL_CONFIG: |
+        - url: https://github.com/eugencowie/homelab.git
+          reference: main
+          interval: 5m
+    secrets:
+      - git_access_token
+      - sops_age_key
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - data:/data
+    cap_drop:
+      - ALL
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      update_config:
+        failure_action: rollback
