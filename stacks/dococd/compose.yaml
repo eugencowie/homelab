@@ -17,6 +17,8 @@ services:
         - url: https://github.com/eugencowie/homelab.git
           reference: main
           interval: 5m
+      GIT_AUTH_DOMAINS: |
+        - domains: [github.com]
       GIT_COMMIT_STATUS: "true"
       GIT_ACCESS_TOKEN_FILE: /run/secrets/git_access_token
       SOPS_AGE_KEY_FILE: /run/secrets/sops_age_key
