@@ -17,7 +17,6 @@
     - vault/hermes.yml
     - vault/matrix.yml
     - vault/samba.yml
-    - vault/stash.yml
     - vault/tailscale.yml
   roles:
     - caddy
@@ -26,5 +25,4 @@
     - hermes
     - matrix
     - samba
-    - stash
     - tailscale
