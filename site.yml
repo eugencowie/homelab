@@ -13,7 +13,5 @@
       detach: false
   vars_files:
     - vault/caddy.yml
-    - vault/tailscale.yml
   roles:
     - caddy
-    - tailscale
