@@ -14,11 +14,9 @@
   vars_files:
     - vault/caddy.yml
     - vault/matrix.yml
-    - vault/samba.yml
     - vault/tailscale.yml
   roles:
     - caddy
     - adguard
     - matrix
-    - samba
     - tailscale
