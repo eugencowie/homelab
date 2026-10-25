@@ -9,7 +9,7 @@ volumes:
 
 services:
   caddy:
-    image: ghcr.io/eugencowie/homelab/caddy:2.11.4@sha256:f66a9413a3e02c4f4c37ea7214d5172efd14f645dbb68912753cba03b3f16581
+    image: ghcr.io/eugencowie/homelab/caddy:2.11.4@sha256:5c35e465a6e2f3c8d0be75c7b4dbf24ba8535c6af85e42b09da35d6c58b7286c
     volumes:
       - data:/data
       - /var/run/docker.sock:/var/run/docker.sock
