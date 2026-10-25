@@ -3,10 +3,10 @@ name: Build Caddy
 on:
   push:
     branches: [main]
-    paths: [roles/caddy/files/**]
+    paths: [images/caddy/**]
   pull_request:
     # Also the workflow itself, to test changes to it; push leaves it out so they don't republish the image
-    paths: [roles/caddy/files/**, .github/workflows/build-caddy.yml]
+    paths: [images/caddy/**, .github/workflows/build-caddy.yml]
   workflow_dispatch:
 
 concurrency:
@@ -33,7 +33,7 @@ jobs:
       - name: Get Caddy version
         id: version
         run: |
-          version=$(grep -oP '^FROM caddy:\K[0-9.]+(?=@)' roles/caddy/files/Dockerfile)
+          version=$(grep -oP '^FROM caddy:\K[0-9.]+(?=@)' images/caddy/Dockerfile)
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
       # The version tag moves with each build so Renovate can bump the digest pinned for deployment
@@ -58,7 +58,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
-          context: roles/caddy/files
+          context: images/caddy
           platforms: linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: ${{ steps.meta.outputs.tags }}
