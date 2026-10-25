@@ -29,8 +29,8 @@ changed content produced a new config. Merged Renovate PRs only reached the Pi o
   The exception is the Caddy image digest bump, which skips approval and the schedule since its Dockerfile change was
   already reviewed.
 - Ansible is deleted once every stack is migrated. Host setup (Docker, swarm init, tmux) becomes a documented manual step.
-- doco-cd's Swarm mode has no live-file reload. Its image prune only removes dangling images, so the `prune` stack
-  runs a daily scheduled job to remove stopped containers and every unused image.
+- doco-cd's Swarm mode has no live-file reload. Its image prune only removes dangling images, so the `dococd-prune`
+  stack runs a daily scheduled job to remove stopped containers and every unused image.
 - `secrets.env` values are unquoted. Swarm deploys read `env_file:` with the Docker CLI, whose env-file format keeps
   quotes as part of the value, unlike Compose.
 - A Caddy update takes two merges: the Dockerfile change, then Renovate's digest bump once CI has published the image.
