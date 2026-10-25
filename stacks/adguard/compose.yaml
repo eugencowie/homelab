@@ -13,13 +13,15 @@ services:
       - config:/opt/adguardhome/conf
       - config:/opt/adguardhome/work
     ports:
-      - "53:53/udp"
-      - "53:53/tcp"
+      - target: 53
+        published: 53
+        protocol: udp
+        mode: host
+      - target: 53
+        published: 53
+        mode: host
     deploy:
       labels:
         caddy: dns.echocharlie.xyz
         caddy.reverse_proxy: adguard:80
         caddy.import: dns
-      placement:
-        constraints:
-          - node.hostname == {{ ansible_facts['hostname'] }}
