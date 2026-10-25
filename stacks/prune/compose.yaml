@@ -1,9 +1,8 @@
 services:
   prune:
     image: docker:29.9.2-cli@sha256:5e6baf67325a79f64ed3bed6863954d5e05d0f3d4e57cbdb14809346814bbfdb
-    # doco-cd's own prune after each deploy only removes dangling images. The old
-    # version of an updated image keeps its tag, and Swarm's stopped task containers
-    # hold it, so remove those containers first and then every unused image.
+    # Swarm's stopped task containers keep old, still-tagged images in use,
+    # so remove them before pruning every unused image.
     command: [sh, -c, docker container prune -f && docker image prune -af]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
