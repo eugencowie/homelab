@@ -33,5 +33,8 @@ services:
       placement:
         constraints:
           - node.role == manager
+      # Only dococd rolls back: a broken dococd cannot deploy its own fix, and it has
+      # no migrations. Other stacks keep the default (pause) so an older image never
+      # runs against data a newer one has migrated.
       update_config:
         failure_action: rollback

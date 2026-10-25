@@ -5,8 +5,7 @@ networks:
 
 configs:
   config:
-    name: "sillytavern_config_{{ (lookup('file', role_path + '/files/config.yml') | hash('sha256'))[:7] }}"
-    external: true
+    file: config.yml
 
 volumes:
   data:
@@ -24,6 +23,3 @@ services:
         caddy: tavern.echocharlie.xyz
         caddy.reverse_proxy: sillytavern:8000
         caddy.import: dns
-      placement:
-        constraints:
-          - node.hostname == {{ ansible_facts['hostname'] }}
