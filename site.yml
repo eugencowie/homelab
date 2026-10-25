@@ -16,5 +16,4 @@
     - vault/tailscale.yml
   roles:
     - caddy
-    - adguard
     - tailscale
