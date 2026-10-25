@@ -13,14 +13,12 @@
       detach: false
   vars_files:
     - vault/caddy.yml
-    - vault/bitwarden.yml
     - vault/matrix.yml
     - vault/samba.yml
     - vault/tailscale.yml
   roles:
     - caddy
     - adguard
-    - bitwarden
     - matrix
     - samba
     - tailscale
