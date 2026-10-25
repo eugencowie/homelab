@@ -4,14 +4,3 @@
   roles:
     - swarm
     - tmux
-
-- name: Configure Raspberry Pi 5
-  hosts: raspberry-pi-5
-  become: true
-  module_defaults:
-    community.docker.docker_stack:
-      detach: false
-  vars_files:
-    - vault/caddy.yml
-  roles:
-    - caddy
