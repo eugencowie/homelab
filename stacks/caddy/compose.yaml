@@ -10,18 +10,19 @@ volumes:
 services:
   caddy:
     image: ghcr.io/eugencowie/homelab/caddy:2.11.4@sha256:5c35e465a6e2f3c8d0be75c7b4dbf24ba8535c6af85e42b09da35d6c58b7286c
+    env_file: secrets.env
     volumes:
       - data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - "80:80"
-      - "443:443"
+      - target: 80
+        published: 80
+        mode: host
+      - target: 443
+        published: 443
+        mode: host
     labels:
-      caddy.email: "{{ caddy_email }}"
+      caddy.email: "{env.CADDY_EMAIL}"
       caddy_0: (dns)
       caddy_0.tls.resolvers: "1.1.1.1"
-      caddy_0.tls.dns: "cloudflare {{ caddy_cloudflare_token }}"
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == {{ ansible_facts['hostname'] }}
+      caddy_0.tls.dns: cloudflare {env.CF_API_TOKEN}
