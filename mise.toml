@@ -45,6 +45,11 @@ description = "Encrypt a Vault file"
 usage = 'arg "<file>"'
 run = 'ansible-vault encrypt "$usage_file"'
 
+[tasks."vault:view"]
+description = "Decrypt and view a Vault file"
+usage = 'arg "<file>"'
+run = 'ansible-vault view "$usage_file"'
+
 [tasks."template:update"]
 description = "Update project with the latest changes from the template"
 run = "cruft update"
