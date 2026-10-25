@@ -5,9 +5,9 @@ networks:
 
 configs:
   config:
-    file: config.json
+    file: configs/config.json
   homeserver:
-    file: homeserver.yaml
+    file: configs/homeserver.yaml
 
 secrets:
   form_secret:
