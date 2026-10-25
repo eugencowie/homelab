@@ -28,7 +28,7 @@
     {
       description: "Update Caddy plugins",
       customType: "regex",
-      managerFilePatterns: ["roles/caddy/files/Dockerfile"],
+      managerFilePatterns: ["images/caddy/Dockerfile"],
       matchStrings: ["--with\\s+(?<depName>[^@\\s]+)@(?<currentValue>\\S+)"],
       datasourceTemplate: "go",
     },
