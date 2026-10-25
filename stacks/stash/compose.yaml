@@ -9,21 +9,13 @@ volumes:
 services:
   stash:
     image: rclone/rclone:1.75.0@sha256:b06aed988cf5967de7c25be5925240983981c757f4ed1ac9d2fa659d51d60548
-    command: "serve webdav --addr :80 --user {{ stash_user.username }} --pass {{ stash_user.password }} Stash:"
-    environment:
-      - PHP_TZ=Europe/London
-      - PUID=0
-      - PGID=0
+    command: "serve webdav --addr :80 Stash:"
+    env_file: secrets.env
     volumes:
       - config:/config/rclone
       - /mnt/wd_elements:/data
-    tmpfs:
-      - /logs
     deploy:
       labels:
         caddy: stash.echocharlie.xyz
         caddy.reverse_proxy: stash:80
         caddy.import: dns
-      placement:
-        constraints:
-          - node.hostname == {{ ansible_facts['hostname'] }}
