@@ -13,15 +13,11 @@ volumes:
 services:
   sillytavern:
     image: ghcr.io/sillytavern/sillytavern:1.19.0@sha256:eef27ff0c7961f1a2f488400f581f48ff38f8b910c5d3b8d389138d71791bb14
-    environment:
-      SILLYTAVERN_HEARTBEATINTERVAL: 30
     configs:
       - source: config
         target: /home/node/app/config/config.yaml
     volumes:
       - data:/home/node/app/data
-    healthcheck:
-      test: ["CMD", "node", "src/healthcheck.js"]
     deploy:
       labels:
         caddy: tavern.echocharlie.xyz
