@@ -17,7 +17,8 @@ changed content produced a new config. Merged Renovate PRs only reached the Pi o
 - **Layout:** one stack per `stacks/<name>/`, auto-discovered by `.doco-cd.yml`. Deleting a folder removes the stack,
   keeping its volumes; doco-cd only removes stacks it deployed from this repository.
 - **Secrets:** SOPS with age, committed encrypted. Env secrets are a dotenv `secrets.env` per stack loaded with
-  `env_file:`; secret files use Swarm `secrets:`. The Pi's age key and the GitHub token are Swarm secrets created by hand.
+  `env_file:`; secret files live in the stack's `secrets/` folder and use Swarm `secrets:`. The Pi's age key and the
+  GitHub token are Swarm secrets created by hand.
 - **Caddy image:** built for arm64 by CI and published to GHCR, since Swarm can't build. The stack pins it by digest
   and Renovate bumps it.
 - **Feedback:** doco-cd reports a commit status per stack using a fine-grained PAT.

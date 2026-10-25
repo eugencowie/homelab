@@ -1,5 +1,5 @@
 creation_rules:
-  - path_regex: stacks/[^/]+/secrets\.env$
+  - path_regex: stacks/[^/]+/(secrets\.env|secrets/.+)$
     key_groups:
       - age:
           - age166uujjrssy8qffpukm4grkvd4uk8jsmlq5fe8n6cr4ftjnfffchs4su8wm # Pi

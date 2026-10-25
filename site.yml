@@ -13,10 +13,8 @@
       detach: false
   vars_files:
     - vault/caddy.yml
-    - vault/matrix.yml
     - vault/tailscale.yml
   roles:
     - caddy
     - adguard
-    - matrix
     - tailscale
