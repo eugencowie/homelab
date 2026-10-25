@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=https://doco.cd/latest/schemas/deploy.schema.json
 
 working_dir: stacks
+timeout: 15m
 
 auto_discovery:
   enabled: true
