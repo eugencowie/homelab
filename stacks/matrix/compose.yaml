@@ -5,14 +5,19 @@ networks:
 
 configs:
   config:
-    name: "matrix_config_{{ (lookup('template', role_path + '/templates/config.json') | hash('sha256'))[:7] }}"
-    external: true
+    file: configs/config.json
   homeserver:
-    name: "matrix_homeserver_{{ (lookup('template', role_path + '/templates/homeserver.yaml') | hash('sha256'))[:7] }}"
-    external: true
+    file: configs/homeserver.yaml
+
+secrets:
+  form_secret:
+    file: secrets/form_secret
+  macaroon_secret_key:
+    file: secrets/macaroon_secret_key
+  registration_shared_secret:
+    file: secrets/registration_shared_secret
   signing_key:
-    name: "matrix_signing_key_{{ (matrix_signing_key | hash('sha256'))[:7] }}"
-    external: true
+    file: secrets/signing_key
 
 volumes:
   data:
@@ -33,20 +38,16 @@ services:
         caddy.handle_2:
         caddy.handle_2.reverse_proxy: element:80
         caddy.import: dns
-      placement:
-        constraints:
-          - node.hostname == {{ ansible_facts['hostname'] }}
 
   synapse:
     image: matrixdotorg/synapse:v1.163.0@sha256:e98ab72138d90fa8b8876c6421fe78a9fdb181c0d7cc690ad740e5173e0c65e6
     configs:
       - source: homeserver
         target: /data/homeserver.yaml
-      - source: signing_key
-        target: /data/matrix.echocharlie.xyz.signing.key
+    secrets:
+      - form_secret
+      - macaroon_secret_key
+      - registration_shared_secret
+      - signing_key
     volumes:
       - data:/data
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == {{ ansible_facts['hostname'] }}
