@@ -1,0 +1,27 @@
+networks:
+  default:
+    name: caddy
+    external: true
+
+volumes:
+  data:
+
+services:
+  hermes:
+    image: nousresearch/hermes-agent:v0.22.2@sha256:36099926da316742423544e055d4734777105ffe6341873af5459b957d0c2919
+    command: gateway run
+    env_file: secrets.env
+    environment:
+      HERMES_DASHBOARD: "true"
+      MATRIX_HOMESERVER: https://matrix.echocharlie.xyz
+      MATRIX_USER_ID: "@hermes:matrix.echocharlie.xyz"
+      MATRIX_E2EE_MODE: optional
+      MATRIX_SESSION_SCOPE: room
+      GATEWAY_ALLOW_ALL_USERS: "true"
+    volumes:
+      - data:/opt/data
+    deploy:
+      labels:
+        caddy: hermes.echocharlie.xyz
+        caddy.reverse_proxy: hermes:9119
+        caddy.import: dns
