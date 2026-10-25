@@ -9,7 +9,7 @@ volumes:
 
 services:
   caddy:
-    image: "caddy:{{ caddy_image_tag }}"
+    image: ghcr.io/eugencowie/homelab/caddy:2.11.4@sha256:f66a9413a3e02c4f4c37ea7214d5172efd14f645dbb68912753cba03b3f16581
     volumes:
       - data:/data
       - /var/run/docker.sock:/var/run/docker.sock
