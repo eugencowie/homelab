@@ -2,12 +2,15 @@
 disable_backends = ["asdf"] # cannot be updated by Renovate
 
 [tools]
+age = "latest"
 ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from ansible-core,ansible-lint" }
 "aqua:astral-sh/uv" = "latest"
+docker-compose = "latest"
 jactionlint = "latest"
 "pipx:cruft" = "latest"
 python = "latest"
 shellcheck = "latest"
+sops = "latest"
 
 [env]
 # shared by all worktrees: resolves to the main checkout's vault/.password
@@ -18,8 +21,20 @@ description = "Check inventory"
 run = "ansible all -m ping"
 
 [tasks.lint]
+description = "Lint workflows, playbook and stacks"
+depends = ["lint:*"]
+
+[tasks."lint:actions"]
+description = "Lint GitHub workflows"
+run = "jactionlint"
+
+[tasks."lint:ansible"]
 description = "Lint playbook"
-run = ["jactionlint", "ansible-lint site.yml"]
+run = "ansible-lint site.yml"
+
+[tasks."lint:stacks"]
+description = "Validate stack compose files"
+run = 'for file in stacks/*/compose.yaml; do docker-compose --file "$file" config --quiet --no-interpolate || exit 1; done'
 
 [tasks.deploy]
 description = "Run playbook"
@@ -44,6 +59,22 @@ run = 'ansible-vault decrypt "$usage_file"'
 description = "Encrypt a Vault file"
 usage = 'arg "<file>"'
 run = 'ansible-vault encrypt "$usage_file"'
+
+[tasks."age:keygen"]
+description = "Create your SOPS age key, unless it exists, and print its public key"
+run = '''
+key="${XDG_CONFIG_HOME:-$HOME/.config}/sops/age/keys.txt"
+if [ ! -e "$key" ]; then
+  mkdir -p "$(dirname "$key")"
+  age-keygen --output "$key"
+fi
+age-keygen -y "$key"
+'''
+
+[tasks."secrets:edit"]
+description = "Create or edit a SOPS-encrypted file"
+usage = 'arg "<file>"'
+run = 'sops edit "$usage_file"'
 
 [tasks."template:update"]
 description = "Update project with the latest changes from the template"
