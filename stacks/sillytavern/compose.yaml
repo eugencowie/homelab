@@ -5,7 +5,7 @@ networks:
 
 configs:
   config:
-    file: ./config.yml
+    file: config.yml
 
 volumes:
   data:
