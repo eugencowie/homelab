@@ -27,5 +27,3 @@ services:
         caddy: tavern.echocharlie.xyz
         caddy.reverse_proxy: sillytavern:8000
         caddy.import: dns
-      update_config:
-        failure_action: rollback
