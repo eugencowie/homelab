@@ -9,8 +9,7 @@ volumes:
 services:
   bitwarden:
     image: vaultwarden/server:1.37.4@sha256:efb3cde962015fcc036b2ea625242248611943b27212ebf4392841fb30fad055
-    environment:
-      - "ADMIN_TOKEN={{ bitwarden_admin_token }}"
+    env_file: secrets.env
     volumes:
       - config:/data
     deploy:
@@ -18,6 +17,3 @@ services:
         caddy: pass.echocharlie.xyz
         caddy.reverse_proxy: bitwarden:80
         caddy.import: dns
-      placement:
-        constraints:
-          - node.hostname == {{ ansible_facts['hostname'] }}
