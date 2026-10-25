@@ -25,6 +25,13 @@
       currentValueTemplate: "{{#if currentValue}}{{{currentValue}}}{{else}}v0.0.0{{/if}}",
       autoReplaceStringTemplate: '"checkout": "{{{newValue}}}"',
     },
+    {
+      description: "Update Caddy plugins",
+      customType: "regex",
+      managerFilePatterns: ["roles/caddy/files/Dockerfile"],
+      matchStrings: ["--with\\s+(?<depName>[^@\\s]+)@(?<currentValue>\\S+)"],
+      datasourceTemplate: "go",
+    },
   ],
 
   packageRules: [
