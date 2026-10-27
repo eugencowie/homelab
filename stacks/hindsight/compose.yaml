@@ -14,28 +14,30 @@ services:
     image: ghcr.io/vectorize-io/hindsight:1.1.0-slim@sha256:fbc37d194bce007b6cce2fd9f66cd7f8c050bd18b80e662090a92835d9cb191d
     env_file: secrets.env
     environment:
+      # The default is the hostname, which Swarm changes on every redeploy
       HINDSIGHT_API_WORKER_ID: hindsight
       HINDSIGHT_API_TENANT_EXTENSION: hindsight_api.extensions.builtin.tenant:ApiKeyTenantExtension
       HINDSIGHT_API_LLM_PROVIDER: openrouter
       HINDSIGHT_API_LLM_MODEL: deepseek/deepseek-v4.1-flash-1017
-      # pins the one provider vetted for no logging; fail rather than fall back
+      # Pins the one provider vetted for no logging; fail rather than fall back
       HINDSIGHT_API_LLM_EXTRA_BODY: '{"provider":{"only":["wafer"],"allow_fallbacks":false,"data_collection":"deny","zdr":true}}'
       HINDSIGHT_API_EMBEDDINGS_PROVIDER: openrouter
       HINDSIGHT_API_EMBEDDINGS_OPENROUTER_MODEL: baai/bge-base-en-v1.5
-      # the model reads 512 tokens and Hindsight counts with a leaner tokenizer
+      # The model reads 512 tokens and Hindsight counts with a leaner tokenizer
       HINDSIGHT_API_EMBEDDINGS_MAX_INPUT_TOKENS: 400
       HINDSIGHT_API_RERANKER_PROVIDER: openrouter
       HINDSIGHT_API_RERANKER_OPENROUTER_MODEL: qwen/qwen3-reranker-8b
-      # without a circuit breaker every recall waits out the primary before falling back
+      # A failed reranker is only benched for 30s, so each outage probe should fail fast
       HINDSIGHT_API_RERANKER_OPENROUTER_TIMEOUT: 10
       HINDSIGHT_API_RERANKER_MAX_RETRIES: 1
-      # recall keeps the fused order instead of failing when reranking is down
+      # Recall keeps the fused order instead of failing when reranking is down
       HINDSIGHT_API_RERANKER_1_PROVIDER: rrf
     networks:
       - default
       - db
     deploy:
       labels:
+        # API and MCP on 8888, web UI on 9999
         caddy_0: hindsight.echocharlie.xyz
         caddy_0.reverse_proxy: hindsight:8888
         caddy_0.import: dns
@@ -51,7 +53,7 @@ services:
       POSTGRES_DB: hindsight
     volumes:
       - data:/var/lib/postgresql
-      # Swarm ignores shm_size, and 64 MB starves parallel HNSW index builds
+      # 256 MiB, as Swarm ignores shm_size and 64 MB starves parallel HNSW index builds
       - type: tmpfs
         target: /dev/shm
         tmpfs:
