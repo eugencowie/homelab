@@ -1,0 +1,58 @@
+networks:
+  caddy:
+    external: true
+
+volumes:
+  data:
+
+services:
+  hindsight:
+    image: ghcr.io/vectorize-io/hindsight:1.1.0-slim@sha256:fbc37d194bce007b6cce2fd9f66cd7f8c050bd18b80e662090a92835d9cb191d
+    env_file: secrets.env
+    environment:
+      # The default is the hostname, which Swarm changes on every redeploy
+      HINDSIGHT_API_WORKER_ID: hindsight
+      HINDSIGHT_API_TENANT_EXTENSION: hindsight_api.extensions.builtin.tenant:ApiKeyTenantExtension
+      HINDSIGHT_API_LLM_PROVIDER: openrouter
+      HINDSIGHT_API_LLM_MODEL: deepseek/deepseek-v4.1-flash-1017
+      # The model defaults to high, which is overkill for structured fact extraction
+      HINDSIGHT_API_LLM_REASONING_EFFORT: low
+      # Pins the one provider vetted for no logging; fail rather than fall back
+      HINDSIGHT_API_LLM_EXTRA_BODY: '{"provider":{"only":["wafer"],"allow_fallbacks":false,"data_collection":"deny","zdr":true}}'
+      HINDSIGHT_API_EMBEDDINGS_PROVIDER: openrouter
+      HINDSIGHT_API_EMBEDDINGS_OPENROUTER_MODEL: baai/bge-base-en-v1.5
+      # The model reads 512 tokens and Hindsight counts with a leaner tokenizer
+      HINDSIGHT_API_EMBEDDINGS_MAX_INPUT_TOKENS: 400
+      HINDSIGHT_API_RERANKER_PROVIDER: openrouter
+      HINDSIGHT_API_RERANKER_OPENROUTER_MODEL: qwen/qwen3-reranker-8b
+      # A failed reranker is only benched for 30s, so each outage probe should fail fast
+      HINDSIGHT_API_RERANKER_OPENROUTER_TIMEOUT: 10
+      HINDSIGHT_API_RERANKER_MAX_RETRIES: 1
+      # Recall keeps the fused order instead of failing when reranking is down
+      HINDSIGHT_API_RERANKER_1_PROVIDER: rrf
+    networks:
+      - default
+      - caddy
+    deploy:
+      labels:
+        # API and MCP on 8888, web UI on 9999
+        caddy_0: hindsight.echocharlie.xyz
+        caddy_0.reverse_proxy: hindsight:8888
+        caddy_0.import: dns
+        caddy_1: memory.echocharlie.xyz
+        caddy_1.reverse_proxy: hindsight:9999
+        caddy_1.import: dns
+
+  postgres:
+    image: pgvector/pgvector:0.8.7-pg18@sha256:2358fcba361ed2233a5ed81b5fe4ca779ccb304120ce531a3bf51c0ed7e2bc11
+    env_file: secrets.env
+    environment:
+      POSTGRES_USER: hindsight
+      POSTGRES_DB: hindsight
+    volumes:
+      - data:/var/lib/postgresql
+      # 256 MiB, as Swarm ignores shm_size and 64 MB starves parallel HNSW index builds
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+          size: 268435456
