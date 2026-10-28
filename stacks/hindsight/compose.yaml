@@ -1,10 +1,6 @@
 networks:
-  default:
-    name: caddy
+  caddy:
     external: true
-  # keeps Postgres off the shared caddy network
-  db:
-    driver: overlay
 
 volumes:
   data:
@@ -34,7 +30,7 @@ services:
       HINDSIGHT_API_RERANKER_1_PROVIDER: rrf
     networks:
       - default
-      - db
+      - caddy
     deploy:
       labels:
         # API and MCP on 8888, web UI on 9999
@@ -58,5 +54,3 @@ services:
         target: /dev/shm
         tmpfs:
           size: 268435456
-    networks:
-      - db
