@@ -15,6 +15,8 @@ services:
       HINDSIGHT_API_TENANT_EXTENSION: hindsight_api.extensions.builtin.tenant:ApiKeyTenantExtension
       HINDSIGHT_API_LLM_PROVIDER: openrouter
       HINDSIGHT_API_LLM_MODEL: deepseek/deepseek-v4.1-flash-1017
+      # The model defaults to high, which is overkill for structured fact extraction
+      HINDSIGHT_API_LLM_REASONING_EFFORT: low
       # Pins the one provider vetted for no logging; fail rather than fall back
       HINDSIGHT_API_LLM_EXTRA_BODY: '{"provider":{"only":["wafer"],"allow_fallbacks":false,"data_collection":"deny","zdr":true}}'
       HINDSIGHT_API_EMBEDDINGS_PROVIDER: openrouter
