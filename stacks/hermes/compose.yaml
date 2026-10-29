@@ -21,7 +21,6 @@ services:
       HINDSIGHT_MODE: local_external
       # over the shared caddy network, not through Caddy
       HINDSIGHT_API_URL: http://hindsight:8888
-      HINDSIGHT_BANK_ID: hermes
     volumes:
       - data:/opt/data
     deploy:
