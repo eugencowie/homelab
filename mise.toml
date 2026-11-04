@@ -7,8 +7,6 @@ ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from 
 "aqua:astral-sh/uv" = "latest"
 docker-compose = "latest"
 jactionlint = "latest"
-"pipx:cruft" = "latest"
-python = "latest"
 shellcheck = "latest"
 sops = "latest"
 
@@ -76,10 +74,3 @@ description = "Create or edit a SOPS-encrypted file"
 usage = 'arg "<file>"'
 run = 'sops edit "$usage_file"'
 
-[tasks."template:update"]
-description = "Update project with the latest changes from the template"
-run = "cruft update"
-
-[tasks."template:restore"]
-description = "Restore template-managed files"
-run = "cruft diff | git apply"
