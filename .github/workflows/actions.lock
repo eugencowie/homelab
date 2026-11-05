@@ -13,7 +13,7 @@ workflows:
         - 'actions/checkout@v7.0.1'
         - 'jdx/mise-action@v5.2.3'
     '.github/workflows/renovate.yml':
-        - 'renovatebot/github-action@v46.3.9'
+        - 'renovatebot/github-action@v46.3.12'
 dependencies:
     'actions/checkout@v7.0.1':
         ref: 'v7.0.1'
@@ -45,8 +45,8 @@ dependencies:
         commit: 'sha1-82a612c5ab8bcda7cc5db6b7e81a8e7584c3dc6e'
         owner_id: 216188
         repo_id: 738284564
-    'renovatebot/github-action@v46.3.9':
-        ref: 'v46.3.9'
-        commit: 'sha1-a63d9a7bc606f7336fd20b47f2f32259a35e6213'
+    'renovatebot/github-action@v46.3.12':
+        ref: 'v46.3.12'
+        commit: 'sha1-1c0cf989c02653fba0efe7ca5772338860ca71dc'
         owner_id: 38656520
         repo_id: 252754603
