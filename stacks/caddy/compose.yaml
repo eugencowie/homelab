@@ -9,7 +9,7 @@ volumes:
 
 services:
   caddy:
-    image: ghcr.io/eugencowie/homelab/caddy:2.11.7@sha256:549fec3b0d81101f6f21d89a7b2218dfee8f65e18115898ff283596a60ac6149
+    image: ghcr.io/eugencowie/homelab/caddy:2.11.8@sha256:4a798d376fce8f5d8854108c51cee3d30a6aa1f6eaa3e2967c7c1ba6a37244cc
     env_file: secrets.env
     volumes:
       - data:/data
