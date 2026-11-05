@@ -1,12 +1,12 @@
-name: Build Caddy
+name: Build
 
 on:
   push:
     branches: [main]
-    paths: [images/caddy/**]
+    paths: [images/**]
   pull_request:
     # Also the workflow itself, to test changes to it; push leaves it out so they don't republish the image
-    paths: [images/caddy/**, .github/workflows/build-caddy.yml]
+    paths: [images/**, .github/workflows/build.yml]
   workflow_dispatch:
 
 concurrency:
@@ -14,8 +14,8 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  build:
-    name: Build
+  caddy:
+    name: Build Caddy
     runs-on: ubuntu-26.04-arm
     timeout-minutes: 30
     permissions:

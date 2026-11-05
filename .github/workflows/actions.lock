@@ -3,7 +3,7 @@
 # Docs: https://gh.io/actions-lockfile
 version: 'v0.0.3'
 workflows:
-    '.github/workflows/build-caddy.yml':
+    '.github/workflows/build.yml':
         - 'actions/checkout@v7.0.1'
         - 'docker/build-push-action@v7.4.0'
         - 'docker/login-action@v4.7.0'
