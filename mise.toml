@@ -1,6 +1,6 @@
 [tools]
 age = "latest"
-ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from ansible-core,ansible-lint" }
+ansible = { version = "latest", uvx = true, uvx_args = "--python 3.14 --with-executables-from ansible-core,ansible-lint" }
 docker-compose = "latest"
 jactionlint = "latest"
 shellcheck = "latest"
