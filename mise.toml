@@ -4,11 +4,11 @@ disable_backends = ["asdf"] # cannot be updated by Renovate
 [tools]
 age = "latest"
 ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from ansible-core,ansible-lint" }
-"aqua:astral-sh/uv" = "latest"
 docker-compose = "latest"
 jactionlint = "latest"
 shellcheck = "latest"
 sops = "latest"
+uv = "latest"
 
 [env]
 # shared by all worktrees: resolves to the main checkout's vault/.password
@@ -73,4 +73,3 @@ age-keygen -y "$key"
 description = "Create or edit a SOPS-encrypted file"
 usage = 'arg "<file>"'
 run = 'sops edit "$usage_file"'
-
