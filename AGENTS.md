@@ -1,20 +1,10 @@
 # Agent Instructions
 
-## Agent skills
+## Coding Standards
 
-### Issue tracker
+See [coding-standards.md](docs/coding-standards.md).
 
-Tickets live as local Markdown files in `docs/planning/`. See `docs/agents/issue-tracker.md`.
-
-### Triage labels
-
-Default canonical labels. See `docs/agents/triage-labels.md`.
-
-### Domain docs
-
-Single-context layout: `docs/glossary.md` and ADRs in `docs/architecture/`. See `docs/agents/domain.md`.
-
-## Development environment
+## Development Environment
 
 This project uses mise to manage the development environment.
 

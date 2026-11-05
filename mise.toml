@@ -1,16 +1,11 @@
-[settings]
-disable_backends = ["asdf"] # cannot be updated by Renovate
-
 [tools]
 age = "latest"
-ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from ansible-core,ansible-lint" }
-"aqua:astral-sh/uv" = "latest"
+ansible = { version = "latest", uvx = true, uvx_args = "--python 3.14 --with-executables-from ansible-core,ansible-lint" }
 docker-compose = "latest"
 jactionlint = "latest"
-"pipx:cruft" = "latest"
-python = "latest"
 shellcheck = "latest"
 sops = "latest"
+uv = "latest"
 
 [env]
 # shared by all worktrees: resolves to the main checkout's vault/.password
@@ -75,11 +70,3 @@ age-keygen -y "$key"
 description = "Create or edit a SOPS-encrypted file"
 usage = 'arg "<file>"'
 run = 'sops edit "$usage_file"'
-
-[tasks."template:update"]
-description = "Update project with the latest changes from the template"
-run = "cruft update"
-
-[tasks."template:restore"]
-description = "Restore template-managed files"
-run = "cruft diff | git apply"
