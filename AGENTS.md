@@ -1,6 +1,10 @@
 # Agent Instructions
 
-## Development environment
+## Coding Standards
+
+See [coding-standards.md](docs/coding-standards.md).
+
+## Development Environment
 
 This project uses mise to manage the development environment.
 

@@ -1,6 +1,6 @@
 # homelab
 
-Services for my Raspberry Pi 5, deployed to Docker Swarm by [doco-cd](https://doco.cd). Ansible prepares the host. See [ADR 0001](docs/architecture/0001-deploy-with-doco-cd-on-swarm.md).
+Services for my Raspberry Pi 5, deployed to Docker Swarm by [doco-cd](https://doco.cd). Ansible prepares the host.
 
 ## Structure
 

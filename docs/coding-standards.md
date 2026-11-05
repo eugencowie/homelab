@@ -15,7 +15,7 @@
 
 ## Secrets
 
-- Put env secrets in a SOPS-encrypted `secrets.env` with unquoted values, and secret files in `secrets/` as Swarm `secrets:`. See [ADR 0001](docs/architecture/0001-deploy-with-doco-cd-on-swarm.md).
+- Put env secrets in a SOPS-encrypted `secrets.env` with unquoted values, and secret files in `secrets/` as Swarm `secrets:`. See [ADR 0001](architecture/0001-deploy-with-doco-cd-on-swarm.md).
 - Prefer an app's `*_path` or `*_FILE` option over an env secret.
 
 ## Comments
