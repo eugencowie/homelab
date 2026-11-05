@@ -47,10 +47,11 @@ url_api = "https://api.github.com/repos/FiloSottile/age/releases/assets/53554193
 provenance = "github-attestations"
 
 [[tools.ansible]]
-version = "14.4.0"
-backend = "pipx:ansible"
+version = "14.6.0"
+backend = "pypi:ansible"
 
 [tools.ansible.options]
+expose = '["ansible-core"]'
 uvx = "true"
 uvx_args = "--python 3.14 --with-executables-from ansible-core,ansible-lint"
 
