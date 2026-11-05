@@ -1,37 +1,23 @@
-volumes:
-  etc:
-  lib:
+configs:
+  smb:
+    file: configs/smb.conf
+
+secrets:
+  users:
+    file: secrets/users.conf
 
 services:
   samba:
-    image: dperson/samba@sha256:66088b78a19810dd1457a8f39340e95e663c728083efa5fe7dc0d40b2478e869
-    env_file: secrets.env
-    environment:
-      USERID: 0
-      GROUPID: 0
-      SHARE: Data;/mnt;yes;no;no;all
-      GLOBAL: hide files = $$RECYCLE.BIN/System Volume Information
-      SMB: 1
+    image: dockurr/samba:4.23.10@sha256:2a0452a12b7a244a22f18d0f233101bb8d4952b5500ae263905e3b9dad3bf2ae
+    configs:
+      - source: smb
+        target: /etc/samba/smb.conf
+    secrets:
+      - source: users
+        target: /etc/samba/users.conf
     ports:
-      - target: 137
-        published: 137
-        protocol: udp
-        mode: host
-      - target: 138
-        published: 138
-        protocol: udp
-        mode: host
-      - target: 139
-        published: 139
-        mode: host
       - target: 445
         published: 445
         mode: host
     volumes:
-      - etc:/etc
-      - lib:/var/lib/samba
-      - /mnt/wd_elements:/mnt
-    tmpfs:
-      - /var/cache/samba
-      - /var/log/samba
-      - /run/samba
+      - /mnt/wd_elements:/shared
