@@ -1,6 +1,7 @@
 [tools]
 age = "latest"
-ansible = { version = "latest", uvx = true, uvx_args = "--python 3.14 --with-executables-from ansible-core,ansible-lint" }
+python = "3.14"
+ansible = { version = "latest", uvx = true, uvx_args = "--with-executables-from ansible-core,ansible-lint" }
 docker-compose = "latest"
 jactionlint = "latest"
 shellcheck = "latest"
@@ -17,19 +18,11 @@ run = "ansible all -m ping"
 
 [tasks.lint]
 description = "Lint workflows, playbook and stacks"
-depends = ["lint:*"]
-
-[tasks."lint:actions"]
-description = "Lint GitHub workflows"
-run = "jactionlint"
-
-[tasks."lint:ansible"]
-description = "Lint playbook"
-run = "ansible-lint site.yml"
-
-[tasks."lint:stacks"]
-description = "Validate stack compose files"
-run = 'for file in stacks/*/compose.yaml; do docker-compose --file "$file" config --quiet --no-interpolate || exit 1; done'
+run = [
+  "jactionlint",
+  "ansible-lint site.yml",
+  'for file in stacks/*/compose.yaml; do docker-compose --file "$file" config --quiet --no-interpolate || exit 1; done',
+]
 
 [tasks.deploy]
 description = "Run playbook"
