@@ -24,9 +24,9 @@ jobs:
 
       - name: Install tools
         uses: jdx/mise-action@v5.2.6
-        with:
-          install_args: docker-compose jactionlint shellcheck
 
-      # lint:ansible is left out because its syntax check needs the vault password
+      - name: Set vault password
+        run: echo dummy > vault/.password
+
       - name: Lint
-        run: 'mise run --skip-tools lint:actions ::: lint:stacks'
+        run: mise run lint

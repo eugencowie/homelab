@@ -53,7 +53,7 @@ backend = "pypi:ansible"
 [tools.ansible.options]
 expose = '["ansible-core"]'
 uvx = "true"
-uvx_args = "--python 3.14 --with-executables-from ansible-core,ansible-lint"
+uvx_args = "--with-executables-from ansible-core,ansible-lint"
 
 [[tools.docker-compose]]
 version = "5.7.0"
@@ -61,43 +61,36 @@ backend = "github:docker/compose"
 
 [tools.docker-compose."platforms.linux-arm64"]
 checksum = "sha256:15861535d14e26555736b49376c95e14bfd94285366c8446bfac7156a972e76f"
-checksum_source = "mise-versions"
 url = "https://github.com/docker/compose/releases/download/v5.7.0/docker-compose-linux-aarch64"
 url_api = "https://api.github.com/repos/docker/compose/releases/assets/702117345"
 
 [tools.docker-compose."platforms.linux-arm64-musl"]
 checksum = "sha256:15861535d14e26555736b49376c95e14bfd94285366c8446bfac7156a972e76f"
-checksum_source = "mise-versions"
 url = "https://github.com/docker/compose/releases/download/v5.7.0/docker-compose-linux-aarch64"
 url_api = "https://api.github.com/repos/docker/compose/releases/assets/702117345"
 
 [tools.docker-compose."platforms.linux-x64"]
 checksum = "sha256:7758048ad38e580f22559603312874fec8bb638d021a9e64182385fc17cc12a2"
-checksum_source = "mise-versions"
 url = "https://github.com/docker/compose/releases/download/v5.7.0/docker-compose-linux-x86_64"
 url_api = "https://api.github.com/repos/docker/compose/releases/assets/702117317"
 
 [tools.docker-compose."platforms.linux-x64-musl"]
 checksum = "sha256:7758048ad38e580f22559603312874fec8bb638d021a9e64182385fc17cc12a2"
-checksum_source = "mise-versions"
 url = "https://github.com/docker/compose/releases/download/v5.7.0/docker-compose-linux-x86_64"
 url_api = "https://api.github.com/repos/docker/compose/releases/assets/702117317"
 
 [tools.docker-compose."platforms.macos-arm64"]
 checksum = "sha256:54495ff81dd8cae11861455f0308a293a530149beba8f1d90ff3f295b11cf035"
-checksum_source = "mise-versions"
 url = "https://github.com/docker/compose/releases/download/v5.7.0/docker-compose-darwin-aarch64"
 url_api = "https://api.github.com/repos/docker/compose/releases/assets/702117350"
 
 [tools.docker-compose."platforms.macos-x64"]
 checksum = "sha256:f57fad1fc3a942309b76da99e0a1c49dc97f7c56d4a03593d71bb01577aeeb29"
-checksum_source = "mise-versions"
 url = "https://github.com/docker/compose/releases/download/v5.7.0/docker-compose-darwin-x86_64"
 url_api = "https://api.github.com/repos/docker/compose/releases/assets/702117335"
 
 [tools.docker-compose."platforms.windows-x64"]
 checksum = "sha256:f5dc759702aec5c0602e247aa861d14853216e3f481c4eaaf83621a035ecf92f"
-checksum_source = "mise-versions"
 url = "https://github.com/docker/compose/releases/download/v5.7.0/docker-compose-windows-x86_64.exe"
 url_api = "https://api.github.com/repos/docker/compose/releases/assets/702117303"
 
@@ -145,6 +138,45 @@ provenance = "github-attestations"
 checksum = "sha256:4e0c7b428a4faa35bb3b86af6fa65a0ac9797edcd4c64e4f7e16ca886437e172"
 url = "https://github.com/jdx/jactionlint/releases/download/v2.4.0/jactionlint_2.4.0_windows_amd64.zip"
 url_api = "https://api.github.com/repos/jdx/jactionlint/releases/assets/688130261"
+provenance = "github-attestations"
+
+[[tools.python]]
+version = "3.14.7"
+backend = "core:python"
+
+[tools.python."platforms.linux-arm64"]
+checksum = "sha256:9b8bd45d06fc3fcdc56f2713a62535fe1c019816461ae87c170dd56184dd3f4d"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
+provenance = "github-attestations"
+
+[tools.python."platforms.linux-arm64-musl"]
+checksum = "sha256:4cfa7844ab77ef43bd8e3579e1a33d21a1551e6f20f73b101973e745b24687ce"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-aarch64-unknown-linux-musl-install_only_stripped.tar.gz"
+provenance = "github-attestations"
+
+[tools.python."platforms.linux-x64"]
+checksum = "sha256:da5357f47b1d9c8d4c439004d463d893ef688a44c27438a62b47073d26d1377e"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+provenance = "github-attestations"
+
+[tools.python."platforms.linux-x64-musl"]
+checksum = "sha256:ecb40bf33dd24d43fe44f7830e0933cd5755d3cf02e45dc404a0cfb0ea6ce0d0"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-unknown-linux-musl-install_only_stripped.tar.gz"
+provenance = "github-attestations"
+
+[tools.python."platforms.macos-arm64"]
+checksum = "sha256:44b4716f4e63bc85e1c07ea2aca730d13a0ec3557d06526d84a13b1d111cf4f9"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-aarch64-apple-darwin-install_only_stripped.tar.gz"
+provenance = "github-attestations"
+
+[tools.python."platforms.macos-x64"]
+checksum = "sha256:419c8d110a393add7e20480f785a9cc2213978cdb10f8198ee7bb38b02cdb0fe"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-apple-darwin-install_only_stripped.tar.gz"
+provenance = "github-attestations"
+
+[tools.python."platforms.windows-x64"]
+checksum = "sha256:6378385d5e42ec0874656e5efd707fb92334a6972b1aca90fd254eb924a8f404"
+url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260929/cpython-3.14.7+20260929-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
 [[tools.shellcheck]]
