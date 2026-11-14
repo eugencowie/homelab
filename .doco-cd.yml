@@ -3,6 +3,10 @@
 working_dir: stacks
 timeout: 15m
 
+# The dococd stack's daily prune job removes unused images. doco-cd's own prune
+# runs after every deploy and deletes the snapshots of images still being pulled.
+prune_images: false
+
 auto_discovery:
   enabled: true
   depth: 1
