@@ -8,7 +8,7 @@ volumes:
 
 services:
   hermes:
-    image: nousresearch/hermes-agent:v0.23.1@sha256:276d44685c65c0cb2a25f190b63c65c8906f9dc76486fb1c05ae71b5826bda08
+    image: nousresearch/hermes-agent:v0.23.4@sha256:ef0650d523ee1b5ab32c779acabc446d9936869a9932591553688a62bcf0c42f
     command: gateway run
     env_file: secrets.env
     environment:
