@@ -12,7 +12,6 @@ services:
     command: gateway run
     env_file: secrets.env
     environment:
-      HERMES_DASHBOARD: "true"
       MATRIX_HOMESERVER: https://matrix.echocharlie.xyz
       MATRIX_USER_ID: "@hermes:matrix.echocharlie.xyz"
       MATRIX_E2EE_MODE: optional
@@ -22,10 +21,6 @@ services:
       - data:/opt/data
     deploy:
       labels:
-        # Dashboard on 9119, Webapp on 9120
-        caddy_0: hermes.echocharlie.xyz
-        caddy_0.reverse_proxy: hermes:9119
-        caddy_0.import: dns
-        caddy_1: bot.echocharlie.xyz
-        caddy_1.reverse_proxy: hermes:9120
-        caddy_1.import: dns
+        caddy: bot.echocharlie.xyz
+        caddy.reverse_proxy: hermes:9120
+        caddy.import: dns
